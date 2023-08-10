@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "components/*": [
+        "./src/_components/*"
+      ],
+      "ultis/*": [
+        "./src/ultis/*"
+      ],
+      "pages/*": [
+        "./src/pages/*"
+      ]
+    }
+  }
+}
