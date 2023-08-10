@@ -2,14 +2,20 @@ import React, { useEffect } from 'react'
 import { actListMovie } from './duck/action'
 import { useDispatch, useSelector } from 'react-redux'
 import MovieItem from './MovieItem'
+import Loader from '../_components/Loader'
 
 export default function ListMoviePage() {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.listMovieReducer.data)
+  const loading = useSelector((state) => state.listMovieReducer.loading)
 
   useEffect(() => {
     dispatch(actListMovie())
   }, [])
+  
+  if (loading) {
+    return <> <Loader /></>
+  }
 
   const renderListMovie = () => {
     if (data) {
@@ -17,13 +23,14 @@ export default function ListMoviePage() {
         return <MovieItem key={index} movie={item} />
       })
     }
+   
   }
 
   return (
-    <div className='container'>
+    <section className='container'>
       <div className='row'>
         {renderListMovie()}
       </div>
-    </div>
+    </section>
   )
 }
