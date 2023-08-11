@@ -1,5 +1,6 @@
 import React from 'react'
 import HomeCarousel from './HomeCarousel'
+import HomeListMovie from './HomeListMovie'
 
 export default function HomePage() {
   return (
@@ -10,7 +11,7 @@ export default function HomePage() {
         </div>
 
         <div className='col-5'>
-        
+          <HomeListMovie />
         </div>
       </div>
     </div>
