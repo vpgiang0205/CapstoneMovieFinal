@@ -1,9 +1,8 @@
 import React from 'react'
 
-export default function TheaterLogo() {
+export default function TheaterLogo(props) {
+  const {theater} = props
   return (
-    <div>
-      
-    </div>
+      <img src={theater.logo} />
   )
 }
