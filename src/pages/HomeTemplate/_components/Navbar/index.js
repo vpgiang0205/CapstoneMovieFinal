@@ -34,6 +34,9 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/booking-page">Booking</NavLink>
                             </li>
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/list-theater-page">Theaters</NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>

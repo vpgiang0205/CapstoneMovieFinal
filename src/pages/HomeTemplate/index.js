@@ -8,8 +8,6 @@ export default function HomeTemplate() {
         <div>
             <Navbar />
             <Outlet />
-
-
             <Footer />
         </div>
     )

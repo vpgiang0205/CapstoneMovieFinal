@@ -1,9 +1,11 @@
 import React from 'react'
 import ListMoviePage from 'pages/HomeTemplate/ListMoviePage'
+import './style.css'
+
 export default function HomeListMovie() {
   return (
-    <div>
-    <ListMoviePage />
+    <div className='overflow container'>
+      <ListMoviePage />
     </div>
   )
 }
