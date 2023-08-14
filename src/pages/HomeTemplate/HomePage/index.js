@@ -1,28 +1,103 @@
-import React from 'react'
-import HomeCarousel from './HomeCarousel'
-import HomeListMovie from './HomeListMovie'
+import React, { useEffect } from 'react'
+import HomeCarouselItem from './HomeCarouselItem'
+import HomeMovieItem from './HomeMovieItem'
 import HomeListTheater from './HomeListTheater'
+import { actListMovie } from '../ListMoviePage/duck/action'
+import { useDispatch, useSelector } from 'react-redux'
+import './style.css'
+import { actCarousel, actTheater } from './duck/actions'
+import Carousel from 'react-multi-carousel';
+
 
 export default function HomePage() {
+
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state.listMovieReducer.data)
+  const carouselData = useSelector((state) => state.carouselReducer.data)
+  const theaterData = useSelector((state)=> state.theaterReducer.data)
+
+  useEffect(() => {
+    dispatch(actListMovie())
+    dispatch(actCarousel())
+    dispatch(actTheater())
+  }, [])
+
+  const renderHomeCarousel = () => {
+    if (!carouselData) {
+      return null
+    }
+    else {
+      return carouselData.map((item, index) => (
+        <HomeCarouselItem key={index} image={item} />
+      ));
+    }
+  }
+
+  const renderHomeListMovie = () => {
+    if (data) {
+      return data.map((item, index) => {
+        return <HomeMovieItem key={index} movie={item} />
+      })
+    }
+  }
+
+  const renderHomeListTheater = () => {
+    if (!theaterData) {
+      return null
+    }
+    else {
+      return theaterData.map((item, index) => (
+        <HomeListTheater key={index} theater={item} />
+      ));
+    }
+
+  }
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
     <div className='container-fluid'>
-      <div className='row home-carousel'>
-        <div className='w-100'>
-          <HomeCarousel />
+      <div className='home-carousel'>
+        <div className=''>
+          {carouselData && (
+            <Carousel
+              responsive={responsive}
+              autoPlay={true}
+              autoPlaySpeed={5000}
+              infinite={true}
+            >
+              {renderHomeCarousel()}
+            </Carousel>
+          )}
         </div>
 
       </div>
-      <div className='row home-listMovie overflow'>
-        <HomeListMovie />
+      <div className='d-flex overflow'>
+        {renderHomeListMovie()}
       </div>
 
       <div className='row'>
         <div className='container'>
-        
-        <HomeListTheater />
+          {theaterData && (renderHomeListTheater())}
         </div>
       </div>
-
     </div>
   )
 }

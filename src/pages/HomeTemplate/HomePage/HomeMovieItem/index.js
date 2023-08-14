@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import './style.css'
-export default function MovieItem(props) {
-  const { movie } = props
-  return (
-    // <Link to={`/detail-page/${movie.maPhim}`} className="col-3">
-    <div className='col-3'>
+import { Link } from 'react-router-dom';
+import './style.css';
 
+export default function HomeMovieItem(props) {
+  const { movie } = props
+
+  return (
+    <div className='col-3'>
       <div className="card text-center my-2">
 
         {/* Card Overlay Container */}
@@ -24,9 +24,7 @@ export default function MovieItem(props) {
             Detail
           </Link>
         </div>
-
       </div>
     </div>
-    // </Link>
   )
 }
