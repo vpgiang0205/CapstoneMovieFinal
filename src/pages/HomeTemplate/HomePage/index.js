@@ -5,7 +5,7 @@ import HomeListTheater from './HomeListTheater'
 import { actListMovie } from '../ListMoviePage/duck/action'
 import { useDispatch, useSelector } from 'react-redux'
 import './style.css'
-import { actCarousel, actTheater } from './duck/actions'
+import { actCarousel, actTheater, actTheaterAdress } from './duck/actions'
 import Carousel from 'react-multi-carousel';
 
 
@@ -40,7 +40,7 @@ export default function HomePage() {
       })
     }
   }
-
+  
   const renderHomeListTheater = () => {
     if (!theaterData) {
       return null

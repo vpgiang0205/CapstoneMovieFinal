@@ -1,5 +1,8 @@
-import React, { Fragment } from 'react';
-import { Tabs, Radio, Space } from 'antd';
+import React, { Fragment, useEffect } from 'react';
+import { Tabs } from 'antd';
+import TheaterAddress from './TheaterAdress';
+import TheaterMovie from './TheaterMovie';
+
 const { TabPane } = Tabs;
 
 export default function HomeListTheater(props) {
@@ -10,16 +13,20 @@ export default function HomeListTheater(props) {
   };
 
   const renderTheater = () => {
-    return data?.map((heThongRap, index) => {
+    return data?.map((theaterGroup, index) => {
       return (
         <TabPane
-          tab={<img className='rounded-full' width="50" src={heThongRap.logo} />}
+          tab={<img className='rounded-full' width="50" src={theaterGroup.logo} alt={theaterGroup.tenHeThongRap} />}
           key={index}
         >
           <Tabs tabPosition={state.tabPosition}>
-            <TabPane tab={heThongRap.tenHeThongRap} key={index}>
-              {/* Add the content you want to display here */}
-              Content for {heThongRap.tenHeThongRap}
+            {/* Tab for theater address */}
+            <TabPane tab={
+              <TheaterAddress id={theaterGroup.maHeThongRap} />
+            } key={index} >
+              <Fragment>
+                <TheaterMovie id={theaterGroup.maHeThongRap} />
+              </Fragment>
             </TabPane>
           </Tabs>
         </TabPane>
