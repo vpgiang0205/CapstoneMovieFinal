@@ -1,13 +1,35 @@
-import React from 'react'
+import React, { Fragment } from 'react';
+import { Tabs, Radio, Space } from 'antd';
+const { TabPane } = Tabs;
 
 export default function HomeListTheater(props) {
-  const { theater } = props
-  console.log(theater);
+  const { data } = props;
+
+  const state = {
+    tabPosition: 'left',
+  };
+
+  const renderTheater = () => {
+    return data?.map((heThongRap, index) => {
+      return (
+        <TabPane
+          tab={<img className='rounded-full' width="50" src={heThongRap.logo} />}
+          key={index}
+        >
+          <Tabs tabPosition={state.tabPosition}>
+            <TabPane tab={heThongRap.tenHeThongRap} key={index}>
+              {/* Add the content you want to display here */}
+              Content for {heThongRap.tenHeThongRap}
+            </TabPane>
+          </Tabs>
+        </TabPane>
+      );
+    });
+  };
 
   return (
-    
-    <div className='container'>
-      <img src={theater.logo} className='w-50' />
-    </div>
-  )
+    <Tabs tabPosition={state.tabPosition}>
+      {renderTheater()}
+    </Tabs>
+  );
 }

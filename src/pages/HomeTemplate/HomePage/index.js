@@ -14,7 +14,7 @@ export default function HomePage() {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.listMovieReducer.data)
   const carouselData = useSelector((state) => state.carouselReducer.data)
-  const theaterData = useSelector((state)=> state.theaterReducer.data)
+  const theaterData = useSelector((state) => state.theaterReducer.data)
 
   useEffect(() => {
     dispatch(actListMovie())
@@ -46,14 +46,12 @@ export default function HomePage() {
       return null
     }
     else {
-      return theaterData.map((item, index) => (
-        <HomeListTheater key={index} theater={item} />
-      ));
+      return <HomeListTheater data={theaterData} />
     }
 
   }
 
-  const responsive = {
+  const bannerResponsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 1,
@@ -72,13 +70,33 @@ export default function HomePage() {
     },
   };
 
+  const listMovieResponsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+    },
+  };
+
+
   return (
-    <div className='container-fluid'>
+    <div className='py-5'>
       <div className='home-carousel'>
         <div className=''>
           {carouselData && (
             <Carousel
-              responsive={responsive}
+              responsive={bannerResponsive}
               autoPlay={true}
               autoPlaySpeed={5000}
               infinite={true}
@@ -87,10 +105,17 @@ export default function HomePage() {
             </Carousel>
           )}
         </div>
-
       </div>
-      <div className='d-flex overflow'>
-        {renderHomeListMovie()}
+
+      <div className=''>
+        {data && (<Carousel
+          responsive={listMovieResponsive}
+          autoPlay={true}
+          autoPlaySpeed={5000}
+          infinite={true}
+        >
+          {renderHomeListMovie()}
+        </Carousel>)}
       </div>
 
       <div className='row'>

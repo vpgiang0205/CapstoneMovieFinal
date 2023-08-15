@@ -6,15 +6,15 @@ export default function HomeMovieItem(props) {
   const { movie } = props
 
   return (
-    <div className='col-3'>
-      <div className="card text-center my-2">
+      <div className="card text-center">
 
         {/* Card Overlay Container */}
         <div className="card-overlay-container">
         </div>
 
         {/* Card Image */}
-        <img className="card-img-top" src={movie.hinhAnh} alt={movie.tenPhim} />
+
+          <img className = "card-img-top "src={movie.hinhAnh} alt={movie.tenPhim} />
 
         {/* Card Body */}
         <div className='card-body'>
@@ -25,6 +25,6 @@ export default function HomeMovieItem(props) {
           </Link>
         </div>
       </div>
-    </div>
+
   )
 }
