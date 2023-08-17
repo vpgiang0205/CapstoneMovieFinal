@@ -1,11 +1,13 @@
 import * as actions from "./constants"
-import api from "apiUtil"
+import api, { groupid } from "apiUtil"
+
 
 export const actListMovie = () => {
     return (dispatch) => {
         dispatch(actListMovieRequest())
 
-        api.get("QuanLyPhim/LayDanhSachPhim?maNhom=GP01")
+
+        api.get(`QuanLyPhim/LayDanhSachPhim?maNhom=${groupid}`)
             .then((result) => {
                 if (result.data.statusCode === 200) {
                     dispatch(actListMovieSuccess(result.data.content))
