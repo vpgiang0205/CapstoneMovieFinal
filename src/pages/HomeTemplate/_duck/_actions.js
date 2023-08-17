@@ -1,5 +1,5 @@
-import * as actions from './constants'
-import api, {groupid} from 'apiUtil'
+import * as actions from './_constants'
+import api, { groupid } from 'apiUtil'
 
 export const actCarousel = () => {
     return (dispatch) => {
@@ -22,7 +22,7 @@ const actCarouselFail = (error) => ({ type: actions.HOME_CAROUSEL_FAIL, payload:
 export const actTheater = () => {
     return (dispatch) => {
         dispatch(actTheaterRequest)
-        
+
         api.get(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${groupid}`)
             .then((result) => {
                 dispatch(actTheaterSuccess(result.data.content))
@@ -36,3 +36,26 @@ export const actTheater = () => {
 const actTheaterRequest = () => ({ type: actions.HOME_THEATER_REQUEST })
 const actTheaterSuccess = (data) => ({ type: actions.HOME_THEATER_SUCCESS, payload: data })
 const actTheaterFail = (error) => ({ type: actions.HOME_THEATER_FAIL, payload: error })
+
+
+export const actListMovie = () => {
+    return (dispatch) => {
+        dispatch(actListMovieRequest())
+
+        api.get(`QuanLyPhim/LayDanhSachPhim?maNhom=${groupid}`)
+            .then((result) => {
+                if (result.data.statusCode === 200) {
+                    dispatch(actListMovieSuccess(result.data.content))
+                }
+            })
+            .catch((error) => {
+                actListMovieFail(error)
+            })
+
+
+    }
+}
+
+const actListMovieRequest = () => { return { type: actions.MOVIE_REQUEST } }
+const actListMovieSuccess = (data) => { return { type: actions.MOVIE_SUCCESS, payload: data } }
+const actListMovieFail = (error) => { return { type: actions.MOVIE_FAIL, payload: error } }

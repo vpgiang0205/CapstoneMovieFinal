@@ -31,24 +31,26 @@ export default function HomeListTheater(props) {
 
                 </div>
 
-                key={index}  className=' overflow-y'>
+                key={index} className=' overflow-y'>
                 {cumRap.danhSachPhim?.map((phim, index) => {
                   return <Fragment key={index}>
                     <div className='d-flex my-3'>
-                      <div>
-                        <img src={phim.hinhAnh} width="90" />
-                      </div>
+                      <img style={{ height: 75, width: 75 }} src={phim.hinhAnh} alt={phim.tenPhim} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75/75" }} />
 
-                      <div className='px-3'>
-                        {phim.tenPhim}
+                      <div className="ml-2">
+                        <h1 className="text-2xl text-green-700" >{phim.tenPhim}</h1>
                         <p>{cumRap.diaChi}</p>
-
-                        {phim.lstLichChieuTheoPhim?.map((lichchieu, index) => {
-                          return <NavLink to="/" key={index}>
-                            {moment(lichchieu.ngayChieuGioChieu).format('hh:mm A')} </NavLink>
-                        })}
+                        <div className="grid grid-cols-6 gap-6">
+                          {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
+                            return <NavLink className="text-2xl text-green-400" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                              {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                            </NavLink>
+                          })}
+                        </div>
                       </div>
                     </div>
+
+                    <hr />
                   </Fragment>
 
                 })}
@@ -63,7 +65,7 @@ export default function HomeListTheater(props) {
 
   return (
     <div>
-      <Tabs  tabPosition={state.tabPosition}>
+      <Tabs tabPosition={state.tabPosition}>
         {renderTheater()}
       </Tabs>
     </div>

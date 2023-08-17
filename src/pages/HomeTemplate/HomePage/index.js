@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
-import HomeCarouselItem from './HomeCarouselItem'
+import HomeCarousel from './HomeCarousel'
 import HomeMovieItem from './HomeMovieItem'
 import HomeListTheater from './HomeListTheater'
-import { actListMovie } from '../ListMoviePage/duck/action'
 import { useDispatch, useSelector } from 'react-redux'
 import './style.css'
-import { actCarousel, actTheater, actTheaterAdress } from './duck/actions'
+import { actCarousel, actTheater, actListMovie } from '../_duck/_actions'
 import Carousel from 'react-multi-carousel';
 
 
 export default function HomePage() {
 
   const dispatch = useDispatch()
-  const data = useSelector((state) => state.listMovieReducer.data)
+  const movieData = useSelector((state) => state.listMovieReducer.data)
   const carouselData = useSelector((state) => state.carouselReducer.data)
   const theaterData = useSelector((state) => state.theaterReducer.data)
 
@@ -28,19 +27,19 @@ export default function HomePage() {
     }
     else {
       return carouselData.map((item, index) => (
-        <HomeCarouselItem key={index} image={item} />
+        <HomeCarousel key={index} image={item} />
       ));
     }
   }
 
   const renderHomeListMovie = () => {
-    if (data) {
-      return data.map((item, index) => {
+    if (movieData) {
+      return movieData.map((item, index) => {
         return <HomeMovieItem key={index} movie={item} />
       })
     }
   }
-  
+
   const renderHomeListTheater = () => {
     if (!theaterData) {
       return null
@@ -108,7 +107,7 @@ export default function HomePage() {
       </div>
 
       <div className=''>
-        {data && (<Carousel
+        {movieData && (<Carousel
           responsive={listMovieResponsive}
           autoPlay={true}
           autoPlaySpeed={5000}
@@ -118,7 +117,7 @@ export default function HomePage() {
         </Carousel>)}
       </div>
 
-      <div className='row'>
+      <div className='overflow'>
         <div className='container'>
           {theaterData && (renderHomeListTheater())}
         </div>
