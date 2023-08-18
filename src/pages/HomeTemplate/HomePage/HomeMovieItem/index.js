@@ -6,25 +6,28 @@ export default function HomeMovieItem(props) {
   const { movie } = props
 
   return (
-      <div className="card text-center">
+    <>
+      <Link to={`/detail-page/${movie.maPhim}`}>
+        <div className="card text-center">
 
-        {/* Card Overlay Container */}
-        <div className="card-overlay-container">
+          {/* Card Overlay Container */}
+          <div className="card-overlay-container">
+          </div>
+
+          {/* Card Image */}
+
+          <img className="card-img-top " src={movie.hinhAnh} alt={movie.tenPhim} />
+
+          {/* Card Body */}
+          <div className='card-body'>
+            <h5 className="card-title">{movie.tenPhim}</h5>
+            <p className="card-text">{movie.moTa}</p>
+            <Link to={`/detail-page/${movie.maPhim}`} className="btn btn-danger">
+              Detail
+            </Link>
+          </div>
         </div>
-
-        {/* Card Image */}
-
-          <img className = "card-img-top "src={movie.hinhAnh} alt={movie.tenPhim} />
-
-        {/* Card Body */}
-        <div className='card-body'>
-          <h5 className="card-title">{movie.tenPhim}</h5>
-          <p className="card-text">{movie.moTa}</p>
-          <Link to={`/detail-page/${movie.maPhim}`} className="btn btn-danger">
-            Detail
-          </Link>
-        </div>
-      </div>
-
+      </Link>
+    </>
   )
 }

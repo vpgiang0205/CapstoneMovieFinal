@@ -15,7 +15,6 @@ export default function HomeListTheater(props) {
 
   const renderTheater = () => {
     return data?.map((theaterGroup, index) => {
-      console.log(theaterGroup);
       return (
         <TabPane
           tab={<img className='rounded-full' width="50" src={theaterGroup.logo} alt={theaterGroup.tenHeThongRap} />}

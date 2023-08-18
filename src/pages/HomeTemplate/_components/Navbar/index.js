@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function Navbar() {
     return (
-        <div className='d-flex position-fixed w-100 ' style={{ zIndex: 22 }}>
+        <div className='d-flex position-fixed w-100' style={{ zIndex: 22 }}>
             <nav className="w-100 navbar navbar-expand-md navbar-light bg-light">
                 <div className="container-fluid">
                     <NavLink className="navbar-brand" to="/">

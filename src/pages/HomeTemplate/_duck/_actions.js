@@ -59,3 +59,56 @@ export const actListMovie = () => {
 const actListMovieRequest = () => { return { type: actions.MOVIE_REQUEST } }
 const actListMovieSuccess = (data) => { return { type: actions.MOVIE_SUCCESS, payload: data } }
 const actListMovieFail = (error) => { return { type: actions.MOVIE_FAIL, payload: error } }
+
+
+
+export const actMovieItemDetail = (id) => {
+    return (dispatch) => {
+        dispatch(actMovieItemDetailRequest)
+        api.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${id}`)
+            .then((result) => {
+                if (result.data.statusCode === 200) {
+                    const movieDetails = result.data.content;
+
+                    // Make the second API call to get movie showtimes
+                    api.get(`QuanLyRap/LayThongTinLichChieuPhim?maPhim=${id}`)
+                        .then((showtimesResult) => {
+                            if (showtimesResult.data.statusCode === 200) {
+                                const movieShowTimes = showtimesResult.data.content;
+
+                                // Dispatch success action with both movie details and showtimes
+                                dispatch(actMovieItemDetailSuccess({ movieDetails, movieShowTimes }));
+                            }
+                        })
+                        .catch((error) => {
+                            dispatch(actMovieItemDetailFail(error));
+                        });
+                }
+            })
+            .catch((error) => {
+                dispatch(actMovieItemDetailFail(error));
+            });
+    }
+}
+
+const actMovieItemDetailRequest = () => {
+    return {
+        type: actions.MOVIEITEM_REQUEST
+    }
+}
+
+const actMovieItemDetailSuccess = (data) => {
+
+    return {
+        type: actions.MOVIEITEM_SUCCESS,
+        payload: data
+
+    }
+}
+
+const actMovieItemDetailFail = (error) => {
+    return {
+        type: actions.MOVIEITEM_FAIL,
+        payload: error
+    }
+}
