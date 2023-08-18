@@ -4,9 +4,13 @@
 }
 
 .overflow-y {
--ms-overflow-style: none;
-scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
 .overflow-y::-webkit-scrollbar {
- display: none;
+    display: none;
+}
+
+.text-overplay {
 }

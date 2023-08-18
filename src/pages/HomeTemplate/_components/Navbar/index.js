@@ -1,14 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { UserOutlined } from '@ant-design/icons';
+
 
 export default function Navbar() {
     return (
+
         <div className='d-flex position-fixed w-100' style={{ zIndex: 22 }}>
-            <nav className="w-100 navbar navbar-expand-md navbar-light bg-light">
-                <div className="container-fluid">
-                    <NavLink className="navbar-brand" to="/">
-                        LOGO
-                    </NavLink>
+            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-light w-100 px-5">
+                <NavLink className="navbar-brand " to="/">
+                    LOGO
+                </NavLink>
+                <div className="container">
+
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -20,8 +24,8 @@ export default function Navbar() {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ml-auto">
+                    <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul className="navbar-nav">
                             <li className="nav-item">
                                 <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/" >Home</NavLink>
                             </li>
@@ -39,6 +43,12 @@ export default function Navbar() {
                             </li>
                         </ul>
                     </div>
+                </div>
+
+                <div>
+                    <UserOutlined />
+                    <button className='btn '>login</button> |
+                    <button className='btn '>sign up</button>
                 </div>
             </nav>
         </div>
