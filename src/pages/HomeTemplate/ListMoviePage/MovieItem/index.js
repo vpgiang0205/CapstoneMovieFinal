@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './style.css'
 export default function MovieItem(props) {
   const { movie } = props
+  console.log(movie);
   return (
     // <Link to={`/detail-page/${movie.maPhim}`} className="col-3">
     <div className='col-3'>
@@ -14,7 +15,6 @@ export default function MovieItem(props) {
         </div>
 
         {/* Card Image */}
-        <img className="card-img-top" src={movie.hinhAnh} alt={movie.tenPhim} />
 
         {/* Card Body */}
         <div className='card-body'>

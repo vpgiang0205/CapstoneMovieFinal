@@ -1,19 +1,17 @@
 import { combineReducers } from 'redux'
-import listMovieReducer from 'pages/HomeTemplate/ListMoviePage/duck/reducer';
-import movieItemDetailReducer from 'pages/HomeTemplate/MovieItemDetail/duck/reducer';
-import carouselReducer from 'pages/HomeTemplate/HomePage/duck/carouselReducer';
-import theaterReducer from 'pages/HomeTemplate/HomePage/duck/theaterReducer';
-import theaterAddressReducer from 'pages/HomeTemplate/HomePage/duck/theaterAddressReducer';
-import theaterMovieReducer from 'pages/HomeTemplate/HomePage/duck/theaterMovieReducer';
+import listMovieReducer from 'pages/HomeTemplate/_duck/listMovieReducer';
+import carouselReducer from 'pages/HomeTemplate/_duck/carouselReducer';
+import theaterReducer from 'pages/HomeTemplate/_duck/theaterReducer';
+import movieItemDetailReducer from 'pages/HomeTemplate/_duck/movieItemDetailReducer';
 
 const rootReducer = combineReducers(
     {
-        // Child Reducer
+        // Movie Reducer
         listMovieReducer,
         movieItemDetailReducer,
+        
+        // Home
         theaterReducer,
-        theaterAddressReducer,
-        theaterMovieReducer,
         carouselReducer,
     }
 );

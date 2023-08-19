@@ -1,0 +1,16 @@
+.overflow-y {
+    height: 700px;
+    overflow-y: scroll;
+}
+
+.overflow-y {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.overflow-y::-webkit-scrollbar {
+    display: none;
+}
+
+.text-overplay {
+}
