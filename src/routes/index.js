@@ -41,5 +41,4 @@ const renderRoutes = () => {
         }
     })
 }
-
 export default renderRoutes;
