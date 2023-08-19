@@ -1,4 +1,4 @@
-import * as actions from './constants'
+import * as actions from './_constants'
 
 const initialState = {
     loading: false,
@@ -6,29 +6,29 @@ const initialState = {
     error: null
 }
 
-const theaterAddressReducer = (state = initialState, action) => {
+const listMovieReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.HOME_THEATER_ADDRESS_REQUEST:
+        case actions.MOVIE_REQUEST:
             state.loading = true;
             state.data = null;
             state.error = null;
-            return { ...state }
+            return { ...state };
 
-        case actions.HOME_THEATER_ADDRESS_SUCCESS:
+        case actions.MOVIE_SUCCESS:
             state.loading = false;
             state.data = action.payload;
             state.error = null;
-            return { ...state }
+            return { ...state };
 
-        case actions.HOME_THEATER_ADDRESS_FAIL:
+        case actions.MOVIE_FAIL:
             state.loading = false;
             state.data = null;
             state.error = action.payload;
-            return { ...state }
+            return { ...state };
 
         default:
-            return { ...state }
+            return { ...state };
     }
 }
 
-export default theaterAddressReducer
+export default listMovieReducer;

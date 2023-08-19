@@ -1,29 +1,26 @@
 import React, { useEffect } from 'react'
-import { actListMovie } from './duck/action'
-import { useDispatch, useSelector } from 'react-redux'
 import MovieItem from './MovieItem'
-import Loader from '../_components/Loader'
+import { useDispatch, useSelector } from 'react-redux'
+import { actListMovie } from '../_duck/_actions';
 
 export default function ListMoviePage() {
-  const dispatch = useDispatch()
-  const data = useSelector((state) => state.listMovieReducer.data)
-  const loading = useSelector((state) => state.listMovieReducer.loading)
+
+  const dispatch = useDispatch();
+  const movieData = useSelector((state) => state.listMovieReducer.data)
 
   useEffect(() => {
     dispatch(actListMovie())
-  }, [])
-  
-  if (loading) {
-    return <> <Loader /></>
-  }
+  })
 
   const renderListMovie = () => {
-    if (data) {
-      return data?.map((item, index) => {
+console.log(movieData);
+    if (movieData) {
+      return movieData?.map((item, index) => {
+        
         return <MovieItem key={index} movie={item} />
       })
     }
-   
+
   }
 
   return (

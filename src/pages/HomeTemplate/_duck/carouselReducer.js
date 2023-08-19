@@ -1,4 +1,4 @@
-import * as actions from './constants'
+import * as actions from './_constants'
 
 const initialState = {
     loading: false,
@@ -6,21 +6,21 @@ const initialState = {
     error: null
 }
 
-const theaterReducer = (state = initialState, action) => {
+const carouselReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.HOME_THEATER_REQUEST:
+        case actions.HOME_CAROUSEL_REQUEST:
             state.loading = true;
             state.data = null;
             state.error = null;
             return { ...state }
 
-        case actions.HOME_THEATER_SUCCESS:
+        case actions.HOME_CAROUSEL_SUCCESS:
             state.loading = false;
             state.data = action.payload;
             state.error = null;
             return { ...state }
 
-        case actions.HOME_THEATER_FAIL:
+        case actions.HOME_CAROUSEL_FAIL:
             state.loading = false;
             state.data = null;
             state.error = action.payload;
@@ -31,4 +31,4 @@ const theaterReducer = (state = initialState, action) => {
     }
 }
 
-export default theaterReducer
+export default carouselReducer
