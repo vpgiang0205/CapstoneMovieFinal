@@ -10,9 +10,9 @@ const { TabPane } = Tabs;
 
 
 export default function MovieItemDetail() {
-    const param = useParams();
-    const data = useSelector((state) => state.movieItemDetailReducer.data);
-    const dispatch = useDispatch();
+  const param = useParams();
+  const data = useSelector((state) => state.movieItemDetailReducer.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Fetch movie details when the component mounts
@@ -109,3 +109,4 @@ export default function MovieItemDetail() {
     </section>
   );
 }
+

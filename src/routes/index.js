@@ -21,9 +21,13 @@ const routes = [
             {
                 path: "list-theater-page",
                 element: lazy(() => import ("../pages/HomeTemplate/ListTheaterPage"))
+            },
+            {
+                path: "checkout",
+                element: lazy(() => import ("../pages/CheckoutTemplate/CheckoutTemplate"))
             }
         ]
-    }
+    },
 ]
 
 const renderRoutes = () => {
