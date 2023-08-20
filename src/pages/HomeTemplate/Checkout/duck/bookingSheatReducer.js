@@ -1,10 +1,13 @@
-import { BOOKING_SHEAT_REQUEST, BOOKING_SHEAT_SUCCESS, BOOKING_SHEAT_FAIL } from './_constants';
-
+import { BOOKING_SHEAT_REQUEST, BOOKING_SHEAT_SUCCESS, BOOKING_SHEAT_FAIL, ROOM_TICKET_DETAIL } from './_constants';
+import {ThongTinLichChieu} from '../../../../_core/model/ThongTinPhongVe';
 const initialState = {
-    chiTietPhongVe: {},
+    chiTietPhongVe: new ThongTinLichChieu(),
 };
 const QuanLyDatVeReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ROOM_TICKET_DETAIL:
+            state.chiTietPhongVe = action.chiTietPhongVe;
+            return {...state};
         case BOOKING_SHEAT_REQUEST:
             state.loading = true;
             state.data = null;
