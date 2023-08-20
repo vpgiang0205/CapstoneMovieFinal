@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { actMovieItemDetail } from '../_duck/_actions';
+import { actMovieItemDetail } from '../../../redux/types/_actions';
 import './style.css';
 import moment from 'moment';
 import { Tabs } from 'antd';

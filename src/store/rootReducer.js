@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import listMovieReducer from 'pages/HomeTemplate/_duck/listMovieReducer';
-import carouselReducer from 'pages/HomeTemplate/_duck/carouselReducer';
-import theaterReducer from 'pages/HomeTemplate/_duck/theaterReducer';
-import movieItemDetailReducer from 'pages/HomeTemplate/_duck/movieItemDetailReducer';
+import listMovieReducer from '../redux/Reducers/listMovieReducer';
+import carouselReducer from '../redux/Reducers/carouselReducer';
+import theaterReducer from '../redux/Reducers/theaterReducer';
+import movieItemDetailReducer from '../redux/Reducers/movieItemDetailReducer';
 import  QuanLyDatVeReducer from 'pages/HomeTemplate/Checkout/duck/bookingSheatReducer';
 const rootReducer = combineReducers(
     {

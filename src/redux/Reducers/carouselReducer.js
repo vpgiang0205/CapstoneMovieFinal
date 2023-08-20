@@ -1,4 +1,4 @@
-import * as actions from './_constants'
+import * as actions from '../types/_constants'
 
 const initialState = {
     loading: false,

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import MovieItem from './MovieItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { actListMovie } from '../_duck/_actions';
+import { actListMovie } from '../../../redux/types/_actions';
 
 export default function ListMoviePage() {
 
