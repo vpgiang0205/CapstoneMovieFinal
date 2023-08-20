@@ -5,9 +5,8 @@ import { UserOutlined } from '@ant-design/icons';
 
 export default function Navbar() {
     return (
-
         <div className='d-flex position-fixed w-100' style={{ zIndex: 22 }}>
-            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-light w-100 px-5">
+            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-info w-100 px-5 ">
                 <NavLink className="navbar-brand " to="/">
                     LOGO
                 </NavLink>
@@ -26,7 +25,7 @@ export default function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul className="navbar-nav">
-                            <li className="nav-item">
+                            <li className="nav-item ">
                                 <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/" >Home</NavLink>
                             </li>
                             <li className="nav-item">
