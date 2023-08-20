@@ -60,11 +60,10 @@ export default function HomeListTheater(props) {
                       <img width="100" className='col-3' height="130" src={phim.hinhAnh} alt={phim.tenPhim} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75/75" }} />
 
                       <div className="col-9">
-                        <h4 className="" >{phim.tenPhim}</h4>
+                        <NavLink to = {`/detail-page/${phim.maPhim}`}> <h4 className="" >{phim.tenPhim}</h4></NavLink>
                         <p>{cumRap.diaChi}</p>
                         <div className="">
                           {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
-                            console.log(lichChieu);
                             return <NavLink className="btn btn-success m-1 font-weight-light" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                               {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy ~ hh:mm A')}
                             </NavLink>

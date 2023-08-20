@@ -26,15 +26,13 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a href="#section__ListCarousel" className='nav-link'>Home</a>
+                                <NavLink className={({ isActive }) => isActive ? "myactive nav-link" : "nav-link"} to="/" >Home</NavLink>
+                            </li>
+                      
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "myactive nav-link" : "nav-link"} to="/about-page" >About</NavLink>
+                            </li>
 
-                            </li>
-                            <li className="nav-item">
-                                <a href="#section__ListTheater" className='nav-link'>List Movie</a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#footer" className='nav-link'>About</a>
-                            </li>
                         </ul>
                     </div>
                 </div>

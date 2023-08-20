@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './style.css'
 import { actCarousel, actTheater, actListMovie } from '../../../redux/types/_actions'
 import Carousel from 'react-multi-carousel';
+import HomeBooking from './HomeBooking'
 
 
 export default function HomePage() {
@@ -106,6 +107,9 @@ export default function HomePage() {
         </div>
       </div>
 
+      <section>
+        <HomeBooking />
+      </section>
       <section id='section__ListMovie'>
         {movieData && (<Carousel
           responsive={listMovieResponsive}

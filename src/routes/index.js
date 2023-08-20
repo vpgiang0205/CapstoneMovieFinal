@@ -15,6 +15,10 @@ const routes = [
                 element: lazy(() => import("../pages/HomeTemplate/MovieItemDetail"))
             },
             {
+                path: "about-page",
+                element: lazy(() => import ("../pages/HomeTemplate/AboutPage"))
+            },
+            {
                 path: "checkout/:id",
                 element: lazy(() => import ("../pages/HomeTemplate/Checkout"))
             },

@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function AboutPage() {
   return (
-    <div>
-      ádasdsad
+    <div className='py-3'>
+      this is about 
     </div>
   )
 }
