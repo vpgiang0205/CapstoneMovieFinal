@@ -12,18 +12,23 @@ const routes = [
             },
             {
                 path: "list-movie-page",
-                element: lazy(()=> import ("../pages/HomeTemplate/ListMoviePage"))
+                element: lazy(() => import("../pages/HomeTemplate/ListMoviePage"))
             },
             {
                 path: "detail-page/:id",
-                element: lazy(() => import ("../pages/HomeTemplate/MovieItemDetail"))
+                element: lazy(() => import("../pages/HomeTemplate/MovieItemDetail"))
             },
             {
                 path: "list-theater-page",
-                element: lazy(() => import ("../pages/HomeTemplate/ListTheaterPage"))
+                element: lazy(() => import("../pages/HomeTemplate/ListTheaterPage"))
             }
         ]
+    },
+    {
+        path: "login",
+        element: lazy(() => import("../pages/Login"))
     }
+
 ]
 
 const renderRoutes = () => {
