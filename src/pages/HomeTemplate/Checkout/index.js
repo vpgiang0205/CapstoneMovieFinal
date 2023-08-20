@@ -3,7 +3,7 @@ import './style.css';
 import style from './checkout.module.css';
 import { Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { actFetchBookingSheat } from './duck/_actions';
+import { layChiTietPhongVe } from './duck/_actions';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -15,7 +15,8 @@ function Checkout(props) {
         // const action = actFetchBookingSheat(props.match.params.id)
         // dispatch(action)
         props.fetchData(params.maLichChieu);
-    }, [])
+    }, []);
+    const {thongTinPhim} = chiTietPhongVe;
     return (
         <>
         <br />
@@ -33,7 +34,7 @@ function Checkout(props) {
                 <div className='col-md-4'>
                     <h3 className='text-center text-success text-2xl'>0đ</h3>
                     <hr />
-                    <h3 className='text-xl text-center'>Lật mặt 48h</h3>
+                    <h3 className='text-xl text-center'>{thongTinPhim.tenPhim}</h3>
                     <hr />
                     <div className='d-flex justify-content-between my-3'>
                         <div>
@@ -82,7 +83,7 @@ function Checkout(props) {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (maLichChieu) => {
-            dispatch(actFetchBookingSheat(maLichChieu));
+            dispatch(layChiTietPhongVe(maLichChieu));
         },
     };
 };

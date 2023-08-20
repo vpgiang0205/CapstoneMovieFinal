@@ -1,13 +1,13 @@
 import { BOOKING_SHEAT_REQUEST, BOOKING_SHEAT_SUCCESS, BOOKING_SHEAT_FAIL } from './_constants';
 import api from './../../../../apiUtil';
 
-export const actFetchBookingSheat = (maLichChieu) => {
+export const layChiTietPhongVe = (maLichChieu) => {
     return (dispatch) => {
         //pending
         dispatch(actBookingSheatRequest());
         api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
             .then((result)=>{
-                if(result.data.statusCode === 200) {
+                if(result.data.statusCode === 200) {               
                     dispatch(actBookingSheatSuccess(result.data.content));
                 }
             })

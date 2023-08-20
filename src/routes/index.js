@@ -23,7 +23,7 @@ const routes = [
                 element: lazy(() => import ("../pages/HomeTemplate/ListTheaterPage"))
             },
             {
-                path: "checkout",
+                path: "checkout/:id",
                 element: lazy(() => import ("../pages/HomeTemplate/Checkout"))
             },
             {
