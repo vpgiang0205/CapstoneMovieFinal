@@ -20,15 +20,18 @@ const routes = [
             },
             {
                 path: "list-theater-page",
-                element: lazy(() => import("../pages/HomeTemplate/ListTheaterPage"))
+                element: lazy(() => import ("../pages/HomeTemplate/ListTheaterPage"))
+            },
+            {
+                path: "checkout/:id",
+                element: lazy(() => import ("../pages/HomeTemplate/Checkout"))
+            },
+            {
+                path: "login",
+                element: lazy(() => import ("../pages/HomeTemplate/Login"))
             }
         ]
-    },
-    {
-        path: "login",
-        element: lazy(() => import("../pages/Login"))
     }
-
 ]
 
 const renderRoutes = () => {
@@ -46,5 +49,4 @@ const renderRoutes = () => {
         }
     })
 }
-
 export default renderRoutes;

@@ -57,7 +57,6 @@ export default function MovieItemDetail() {
               </div>
             </div>
           })}
-
         </TabPane >
       );
     });
@@ -108,4 +107,5 @@ export default function MovieItemDetail() {
       </div>
     </section>
   );
-}
+};
+

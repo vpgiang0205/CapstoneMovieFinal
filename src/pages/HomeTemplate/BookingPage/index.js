@@ -6,4 +6,4 @@ export default function BookingPage() {
       this is booking page
     </div>
   )
-}
+};

@@ -5,9 +5,8 @@ import "./style.css"
 
 export default function Navbar() {
     return (
-
         <div className='d-flex position-fixed w-100' style={{ zIndex: 22 }}>
-            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-light w-100 px-5">
+            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-info w-100 px-5 ">
                 <NavLink className="navbar-brand " to="/">
                     LOGO
                 </NavLink>
@@ -26,11 +25,21 @@ export default function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul className="navbar-nav">
-                            <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/" >Home</NavLink>
-                            <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/about-page">About</NavLink>
-                            <a href="#homeListMovie"><NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"}>List Movie</NavLink></a>
-                            <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/booking-page">Booking</NavLink>
-                            <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/list-theater-page">Theaters</NavLink>
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/" >Home</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/about-page">About</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/list-movie-page">List Movie</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/booking-page">Booking</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/list-theater-page">Theaters</NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
