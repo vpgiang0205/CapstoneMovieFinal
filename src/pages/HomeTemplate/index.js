@@ -6,7 +6,6 @@ import Footer from './_components/Footer'
 export default function HomeTemplate() {
     return (
         <>
-
             <Navbar />
             <div className='container'>
                 <Outlet />

@@ -31,4 +31,6 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-export default api
+export default api;
+
+export const USER_LOGIN = 'USER_LOGIN'

@@ -24,7 +24,11 @@ const routes = [
             },
             {
                 path: "checkout",
-                element: lazy(() => import ("../pages/CheckoutTemplate/CheckoutTemplate"))
+                element: lazy(() => import ("../pages/HomeTemplate/Checkout"))
+            },
+            {
+                path: "login",
+                element: lazy(() => import ("../pages/HomeTemplate/Login"))
             }
         ]
     },
