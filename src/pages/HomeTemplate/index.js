@@ -7,10 +7,14 @@ export default function HomeTemplate() {
     return (
         <>
             <Navbar />
-            <div className='container'>
+
+            <section className='container'>
                 <Outlet />
-            </div>
-            <Footer />
+            </section>
+
+            <section id='footer'>
+                <Footer />
+            </section>
         </>
     )
 }

@@ -91,7 +91,7 @@ export default function HomePage() {
 
   return (
     <div className='py-5'>
-      <div className='home-carousel'>
+      <div className='home-carousel' id='section__ListCarousel'>
         <div className=''>
           {carouselData && (
             <Carousel
@@ -106,7 +106,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className=''>
+      <section id='section__ListMovie'>
         {movieData && (<Carousel
           responsive={listMovieResponsive}
           autoPlay={true}
@@ -115,13 +115,13 @@ export default function HomePage() {
         >
           {renderHomeListMovie()}
         </Carousel>)}
-      </div>
+      </section>
 
-      <div className='overflow'>
+      <section id='section__ListTheater' className='overflow'>
         <div className='container'>
           {theaterData && (renderHomeListTheater())}
         </div>
-      </div>
+      </section>
     </div>
   )
 }

@@ -43,3 +43,7 @@ li, a:hover {
   list-style: none;
   color: inherit;
 }
+
+.myactive {
+  color: red
+}

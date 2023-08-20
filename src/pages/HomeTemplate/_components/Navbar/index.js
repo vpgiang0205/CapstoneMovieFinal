@@ -6,7 +6,7 @@ import "./style.css"
 export default function Navbar() {
     return (
         <div className='d-flex position-fixed w-100' style={{ zIndex: 22 }}>
-            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-info w-100 px-5 ">
+            <nav className=" navbar m-auto  navbar-expand-md navbar-light bg-light w-100 px-5 ">
                 <NavLink className="navbar-brand " to="/">
                     LOGO
                 </NavLink>
@@ -26,19 +26,14 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/" >Home</NavLink>
+                                <a href="#section__ListCarousel" className='nav-link'>Home</a>
+
                             </li>
                             <li className="nav-item">
-                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/about-page">About</NavLink>
+                                <a href="#section__ListTheater" className='nav-link'>List Movie</a>
                             </li>
                             <li className="nav-item">
-                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/list-movie-page">List Movie</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/booking-page">Booking</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className={({ isActive }) => isActive ? "my-active nav-link" : "nav-link"} to="/list-theater-page">Theaters</NavLink>
+                                <a href="#footer" className='nav-link'>About</a>
                             </li>
                         </ul>
                     </div>
