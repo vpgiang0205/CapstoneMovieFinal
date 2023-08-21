@@ -3,7 +3,7 @@ import listMovieReducer from '../redux/Reducers/listMovieReducer';
 import carouselReducer from '../redux/Reducers/carouselReducer';
 import theaterReducer from '../redux/Reducers/theaterReducer';
 import movieItemDetailReducer from '../redux/Reducers/movieItemDetailReducer';
-import  QuanLyDatVeReducer from 'pages/HomeTemplate/Checkout/duck/bookingSheatReducer';
+import  QuanLyDatVeReducer from '../redux/Reducers/bookingTicketReducer';
 const rootReducer = combineReducers(
     {
         // Movie Reducer

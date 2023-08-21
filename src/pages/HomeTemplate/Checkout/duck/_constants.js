@@ -1,4 +1,0 @@
-export const BOOKING_SHEAT_REQUEST = "@@QuanLyDatVeReducer/BOOKING_SHEAT_REQUEST"
-export const BOOKING_SHEAT_SUCCESS = "@@QuanLyDatVeReducer/BOOKING_SHEAT_SUCCESS"
-export const BOOKING_SHEAT_FAIL = "@@QuanLyDatVeReducer/BOOKING_SHEAT_FAIL"
-export const ROOM_TICKET_DETAIL = "@@QuanLyDatVeReducer/ROOM_TICKET_DETAIL"
