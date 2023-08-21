@@ -153,19 +153,19 @@ export const layChiTietPhongVe = (maLichChieu) => {
     console.log(maLichChieu);
     return (dispatch) => {
         //pending
-        dispatch(actBookingSheatRequest());
+        dispatch(actBookingTicketRequest());
         api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
             .then((result)=>{
                 if(result.data.statusCode === 200) {               
-                    dispatch(actBookingSheatSuccess(result.data.content));
+                    dispatch(actBookingTicketSuccess(result.data.content));
                 }
             })
             .catch((error)=>{
-                dispatch(actBookingSheatFail(error))
+                dispatch(actBookingTicketFail(error))
             })
     }
 };
 
-const actBookingSheatRequest = () => {return { type: actions.BOOKING_SHEAT_REQUEST,}};
-const actBookingSheatSuccess = (data) => {return {type: actions.BOOKING_SHEAT_SUCCESS,payload: data,}};
-const actBookingSheatFail = (error) => { return { type: actions.BOOKING_SHEAT_FAIL,payload: error,}};
+const actBookingTicketRequest = () => {return { type: actions.ROOM_TICKET_DETAIL_REQUEST,}};
+const actBookingTicketSuccess = (data) => {return {type: actions.ROOM_TICKET_DETAIL_SUCCESS,payload: data,}};
+const actBookingTicketFail = (error) => { return { type: actions.ROOM_TICKET_DETAIL_FAIL,payload: error,}};
