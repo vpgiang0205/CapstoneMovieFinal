@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { actMovieItemDetail } from '../../../redux/types/_actions';
+import { actMovieItemDetail } from 'redux/types/_actions';
 import './style.css';
 import moment from 'moment';
 import { Tabs } from 'antd';
@@ -28,36 +28,33 @@ export default function MovieItemDetail() {
   };
 
   const renderTheater = () => {
-   
-      return movieShowTimes?.heThongRapChieu.map((htr, index) => {
-        console.log(htr.cumRapChieu);
-
-        return (
-          <TabPane
-            tab={<img className='rounded-full' width="50" src={htr.logo} alt={htr.tenHeThongRap} />}
-            key={index}
-          >
-            {htr.cumRapChieu?.map((cumRap, index) => {
-              return <div key={index}>
-                <div className="d-flex">
-                  <img style={{ width: 60, height: 60 }} src={cumRap.hinhAnh} alt="..." />
-                  <div className="ml-2">
-                    <p style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 1 }} >{cumRap.tenCumRap}</p>
-                    <p className="text-gray-400" style={{ marginTop: 0 }}>{cumRap.diaChi}</p>
-                  </div>
-                </div>
-                <div className="thong-tin-lich-chieu grid grid-cols-4">
-                  {cumRap.lichChieuPhim?.map((lichChieu, index) => {
-                    return <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="col-span-1 text-green-800 font-bold">
-                      {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                    </NavLink>
-                  })}
+    return movieShowTimes?.heThongRapChieu.map((htr, index) => {
+      return (
+        <TabPane
+          tab={<img className='rounded-full' width="50" src={htr.logo} alt={htr.tenHeThongRap} />}
+          key={index}
+        >
+          {htr.cumRapChieu?.map((cumRap, index) => {
+            return <div key={index}>
+              <div className="d-flex">
+                <img style={{ width: 60, height: 60 }} src={cumRap.hinhAnh} alt="..." />
+                <div className="ml-2">
+                  <p style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 1 }} >{cumRap.tenCumRap}</p>
+                  <p className="text-gray-400" style={{ marginTop: 0 }}>{cumRap.diaChi}</p>
                 </div>
               </div>
-            })}
-          </TabPane >
-        );
-      });
+              <div className="thong-tin-lich-chieu grid grid-cols-4">
+                {cumRap.lichChieuPhim?.map((lichChieu, index) => {
+                  return <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="col-span-1 font-bold btn btn-success">
+                    {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                  </NavLink>
+                })}
+              </div>
+            </div>
+          })}
+        </TabPane >
+      );
+    });
   };
 
 

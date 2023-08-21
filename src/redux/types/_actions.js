@@ -1,6 +1,7 @@
-import * as actions from './_constants'
 import api, { groupid } from 'apiUtil'
+import * as actions from '../types/_constants'
 
+// action get list Carousel
 export const actCarousel = () => {
     return (dispatch) => {
         dispatch(actCarouselRequest)
@@ -19,6 +20,7 @@ const actCarouselRequest = () => ({ type: actions.HOME_CAROUSEL_REQUEST })
 const actCarouselSuccess = (data) => ({ type: actions.HOME_CAROUSEL_SUCCESS, payload: data })
 const actCarouselFail = (error) => ({ type: actions.HOME_CAROUSEL_FAIL, payload: error })
 
+// action get list theater
 export const actTheater = () => {
     return (dispatch) => {
         dispatch(actTheaterRequest)
@@ -37,7 +39,7 @@ const actTheaterRequest = () => ({ type: actions.HOME_THEATER_REQUEST })
 const actTheaterSuccess = (data) => ({ type: actions.HOME_THEATER_SUCCESS, payload: data })
 const actTheaterFail = (error) => ({ type: actions.HOME_THEATER_FAIL, payload: error })
 
-
+// action get list movie
 export const actListMovie = () => {
     return (dispatch) => {
         dispatch(actListMovieRequest())
@@ -51,8 +53,6 @@ export const actListMovie = () => {
             .catch((error) => {
                 actListMovieFail(error)
             })
-
-
     }
 }
 
@@ -61,6 +61,7 @@ const actListMovieSuccess = (data) => { return { type: actions.MOVIE_SUCCESS, pa
 const actListMovieFail = (error) => { return { type: actions.MOVIE_FAIL, payload: error } }
 
 
+// action Get detail:
 export const actMovieItemDetail = (id) => {
     return (dispatch) => {
         dispatch(actMovieItemDetailRequest)
@@ -69,13 +70,11 @@ export const actMovieItemDetail = (id) => {
                 if (result.data.statusCode === 200) {
                     const movieDetails = result.data.content;
 
-                    // Make the second API call to get movie showtimes
                     api.get(`QuanLyRap/LayThongTinLichChieuPhim?maPhim=${id}`)
                         .then((showtimesResult) => {
                             if (showtimesResult.data.statusCode === 200) {
                                 const movieShowTimes = showtimesResult.data.content;
 
-                                // Dispatch success action with both movie details and showtimes
                                 dispatch(actMovieItemDetailSuccess({ movieDetails, movieShowTimes }));
                             }
                         })
@@ -90,9 +89,63 @@ export const actMovieItemDetail = (id) => {
     }
 }
 
-const actMovieItemDetailRequest = () => {return { type: actions.MOVIEITEM_REQUEST}}
-const actMovieItemDetailSuccess = (data) => {return {type: actions.MOVIEITEM_SUCCESS, payload: data}}
-const actMovieItemDetailFail = (error) => {return {type: actions.MOVIEITEM_FAIL,payload: error}};
+const actMovieItemDetailRequest = () => { return { type: actions.MOVIEITEM_REQUEST } }
+const actMovieItemDetailSuccess = (data) => { return { type: actions.MOVIEITEM_SUCCESS, payload: data } }
+const actMovieItemDetailFail = (error) => { return { type: actions.MOVIEITEM_FAIL, payload: error } }
+
+export const actAuth = (user, navigate) => {
+    return (dispatch) => {
+        dispatch(actAuthRequest())
+        console.log(user);
+        api.post(`QuanLyNguoiDung/DangNhap`, user)
+            .then((result) => {
+                const user = result.data.content
+
+                // if (!(user.maLoaiNguoiDung === "QuanTri")) {
+                //     // Show error
+                //     const error = {
+                //         response: {
+                //             data: {
+                //                 content: "Bạn không có quyền truy cập!"
+                //             },
+                //         },
+                //     };
+                //     return Promise.reject(error);
+                // }
+
+                // Lưu thông tin lên reducer
+                dispatch(actAuthSuccess(user))
+
+                // Lưu trạng thái đăng nhập
+                localStorage.setItem("USER_LOGIN", JSON.stringify(user))
+
+                // Chuyển hướng
+                navigate("/", { replace: true })
+            })
+            .catch((error) => {
+                dispatch(actAuthFail(error))
+            })
+    }
+}
+
+const actAuthRequest = () => {
+    return {
+        type: actions.AUTH_REQUEST
+    }
+}
+const actAuthSuccess = (data) => {
+    return {
+        type: actions.AUTH_SUCCESS,
+        payload: data
+    }
+}
+const actAuthFail = (error) => {
+    return {
+        type: actions.AUTH_FAIL,
+        payload: error,
+    }
+}
+
 
 // Lấy chi tiết phòng vé
 
