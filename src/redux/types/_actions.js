@@ -1,6 +1,7 @@
-import * as actions from './_constants'
+import * as actions from "redux/types/_constants"
 import api, { groupid } from 'apiUtil'
 
+// action get list Carousel
 export const actCarousel = () => {
     return (dispatch) => {
         dispatch(actCarouselRequest)
@@ -19,6 +20,7 @@ const actCarouselRequest = () => ({ type: actions.HOME_CAROUSEL_REQUEST })
 const actCarouselSuccess = (data) => ({ type: actions.HOME_CAROUSEL_SUCCESS, payload: data })
 const actCarouselFail = (error) => ({ type: actions.HOME_CAROUSEL_FAIL, payload: error })
 
+// action get list theater
 export const actTheater = () => {
     return (dispatch) => {
         dispatch(actTheaterRequest)
@@ -37,7 +39,7 @@ const actTheaterRequest = () => ({ type: actions.HOME_THEATER_REQUEST })
 const actTheaterSuccess = (data) => ({ type: actions.HOME_THEATER_SUCCESS, payload: data })
 const actTheaterFail = (error) => ({ type: actions.HOME_THEATER_FAIL, payload: error })
 
-
+// action get list movie
 export const actListMovie = () => {
     return (dispatch) => {
         dispatch(actListMovieRequest())
@@ -51,8 +53,6 @@ export const actListMovie = () => {
             .catch((error) => {
                 actListMovieFail(error)
             })
-
-
     }
 }
 
@@ -61,7 +61,7 @@ const actListMovieSuccess = (data) => { return { type: actions.MOVIE_SUCCESS, pa
 const actListMovieFail = (error) => { return { type: actions.MOVIE_FAIL, payload: error } }
 
 
-
+// action Get detail:
 export const actMovieItemDetail = (id) => {
     return (dispatch) => {
         dispatch(actMovieItemDetailRequest)
@@ -70,13 +70,11 @@ export const actMovieItemDetail = (id) => {
                 if (result.data.statusCode === 200) {
                     const movieDetails = result.data.content;
 
-                    // Make the second API call to get movie showtimes
                     api.get(`QuanLyRap/LayThongTinLichChieuPhim?maPhim=${id}`)
                         .then((showtimesResult) => {
                             if (showtimesResult.data.statusCode === 200) {
                                 const movieShowTimes = showtimesResult.data.content;
 
-                                // Dispatch success action with both movie details and showtimes
                                 dispatch(actMovieItemDetailSuccess({ movieDetails, movieShowTimes }));
                             }
                         })
@@ -91,24 +89,6 @@ export const actMovieItemDetail = (id) => {
     }
 }
 
-const actMovieItemDetailRequest = () => {
-    return {
-        type: actions.MOVIEITEM_REQUEST
-    }
-}
-
-const actMovieItemDetailSuccess = (data) => {
-
-    return {
-        type: actions.MOVIEITEM_SUCCESS,
-        payload: data
-
-    }
-}
-
-const actMovieItemDetailFail = (error) => {
-    return {
-        type: actions.MOVIEITEM_FAIL,
-        payload: error
-    }
-}
+const actMovieItemDetailRequest = () => {return {type: actions.MOVIEITEM_REQUEST}}
+const actMovieItemDetailSuccess = (data) => {return {type: actions.MOVIEITEM_SUCCESS,payload: data}}
+const actMovieItemDetailFail = (error) => {return {type: actions.MOVIEITEM_FAIL,payload: error}}

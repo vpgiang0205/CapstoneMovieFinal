@@ -4,10 +4,10 @@ import HomeMovieItem from './HomeMovieItem'
 import HomeListTheater from './HomeListTheater'
 import { useDispatch, useSelector } from 'react-redux'
 import './style.css'
-import { actCarousel, actTheater, actListMovie } from '../../../redux/types/_actions'
+import { actCarousel, actTheater, actListMovie } from 'redux/types/_actions'
 import Carousel from 'react-multi-carousel';
 import HomeBooking from './HomeBooking'
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function HomePage() {
 
@@ -92,7 +92,7 @@ export default function HomePage() {
 
   return (
     <div className='py-5'>
-      <div className='home-carousel' id='section__ListCarousel'>
+      <section className='home-carousel' id='section__ListCarousel'>
         <div className=''>
           {carouselData && (
             <Carousel
@@ -105,7 +105,7 @@ export default function HomePage() {
             </Carousel>
           )}
         </div>
-      </div>
+      </section>
 
       <section>
         <HomeBooking />

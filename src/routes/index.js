@@ -16,15 +16,15 @@ const routes = [
             },
             {
                 path: "about-page",
-                element: lazy(() => import ("../pages/HomeTemplate/AboutPage"))
+                element: lazy(() => import("../pages/HomeTemplate/AboutPage"))
             },
             {
                 path: "checkout/:id",
-                element: lazy(() => import ("../pages/HomeTemplate/Checkout"))
+                element: lazy(() => import("../pages/HomeTemplate/Checkout"))
             },
             {
-                path: "login",
-                element: lazy(() => import ("../pages/HomeTemplate/Login"))
+                path: "login-page",
+                element: lazy(() => import("../pages/Login"))
             }
         ]
     }

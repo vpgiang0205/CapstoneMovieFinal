@@ -7,7 +7,7 @@ export default function HomeMovieItem(props) {
 
   return (
     <>
-      <Link to={`/detail-page/${movie.maPhim}`}>
+      {movie && (
         <div className="card text-center">
 
           {/* Card Overlay Container */}
@@ -20,14 +20,17 @@ export default function HomeMovieItem(props) {
 
           {/* Card Body */}
           <div className='card-body'>
-            <h5 className="card-title">{movie.tenPhim}</h5>
-            <p className="card-text">{movie.moTa}</p>
+            <Link to={`/detail-page/${movie.maPhim}`}>
+              <h5 className="card-title">{movie.tenPhim}</h5>
+              <p className="card-text">{movie.moTa}</p>
+            </Link>
             <Link to={`/detail-page/${movie.maPhim}`} className="btn btn-danger">
               Detail
             </Link>
           </div>
         </div>
-      </Link>
+
+      )}
     </>
   )
 }

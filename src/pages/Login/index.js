@@ -1,10 +1,8 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 export default function Login() {
-  const dispatch = useDispatch();
 
   const form = useFormik({
     initialValues: {
@@ -19,7 +17,7 @@ export default function Login() {
 
   return (
     <div className='container d-flex justify-content-center align-items-center min-vh-100'>
-      <form onSubmit={form.handleSubmit} className="form-group w-50 p-3"> {/* Added mt-5 for top margin */}
+      <form onSubmit={form.handleSubmit} className="form-group w-50 p-3">
         <h2 className='text-center mb-4'>Login</h2>
 
         <div className='form-group'>
