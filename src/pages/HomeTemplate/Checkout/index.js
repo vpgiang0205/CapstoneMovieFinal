@@ -33,7 +33,7 @@ function Checkout(props) {
                 <div className='col-md-4'>
                     <h3 className='text-center text-success text-2xl'>0đ</h3>
                     <hr />
-                    <h3 className='text-xl text-center'>{data.tenPhim}</h3>
+                    <h3 className='text-xl text-center'>Tên Phim</h3>
                     <hr />
                     <div className='d-flex justify-content-between my-3'>
                         <div>
