@@ -1,5 +1,5 @@
-import * as actions from "redux/types/_constants"
 import api, { groupid } from 'apiUtil'
+import * as actions from '../types/_constants'
 
 // action get list Carousel
 export const actCarousel = () => {
@@ -60,6 +60,7 @@ const actListMovieRequest = () => { return { type: actions.MOVIE_REQUEST } }
 const actListMovieSuccess = (data) => { return { type: actions.MOVIE_SUCCESS, payload: data } }
 const actListMovieFail = (error) => { return { type: actions.MOVIE_FAIL, payload: error } }
 
+
 // action Get detail:
 export const actMovieItemDetail = (id) => {
     return (dispatch) => {
@@ -88,25 +89,80 @@ export const actMovieItemDetail = (id) => {
     }
 }
 
-const actMovieItemDetailRequest = () => {
-    return {
-        type: actions.MOVIEITEM_REQUEST
+const actMovieItemDetailRequest = () => { return { type: actions.MOVIEITEM_REQUEST } }
+const actMovieItemDetailSuccess = (data) => { return { type: actions.MOVIEITEM_SUCCESS, payload: data } }
+const actMovieItemDetailFail = (error) => { return { type: actions.MOVIEITEM_FAIL, payload: error } }
+
+export const actAuth = (user, navigate) => {
+    return (dispatch) => {
+        dispatch(actAuthRequest())
+        console.log(user);
+        api.post(`QuanLyNguoiDung/DangNhap`, user)
+            .then((result) => {
+                const user = result.data.content
+
+                // if (!(user.maLoaiNguoiDung === "QuanTri")) {
+                //     // Show error
+                //     const error = {
+                //         response: {
+                //             data: {
+                //                 content: "Bạn không có quyền truy cập!"
+                //             },
+                //         },
+                //     };
+                //     return Promise.reject(error);
+                // }
+
+                // Lưu thông tin lên reducer
+                dispatch(actAuthSuccess(user))
+
+                // Lưu trạng thái đăng nhập
+                localStorage.setItem("USER_LOGIN", JSON.stringify(user))
+
+                // Chuyển hướng
+                navigate("/", { replace: true })
+            })
+            .catch((error) => {
+                dispatch(actAuthFail(error))
+            })
     }
 }
 
-const actMovieItemDetailSuccess = (data) => {
-
+const actAuthRequest = () => {
     return {
-        type: actions.MOVIEITEM_SUCCESS,
+        type: actions.AUTH_REQUEST
+    }
+}
+const actAuthSuccess = (data) => {
+    return {
+        type: actions.AUTH_SUCCESS,
         payload: data
-
+    }
+}
+const actAuthFail = (error) => {
+    return {
+        type: actions.AUTH_FAIL,
+        payload: error,
     }
 }
 
-const actMovieItemDetailFail = (error) => {
-    return {
-        type: actions.MOVIEITEM_FAIL,
-        payload: error
+
+// Lấy chi tiết phòng vé
+
+export const layChiTietPhongVe = (maLichChieu) => {
+    console.log(maLichChieu);
+    return (dispatch) => {
+        //pending
+        dispatch(actBookingSheatRequest());
+        api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
+            .then((result)=>{
+                if(result.data.statusCode === 200) {               
+                    dispatch(actBookingSheatSuccess(result.data.content));
+                }
+            })
+            .catch((error)=>{
+                dispatch(actBookingSheatFail(error))
+            })
     }
 };
 

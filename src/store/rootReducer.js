@@ -16,8 +16,8 @@ const rootReducer = combineReducers(
         authReducer,
 
         // Home
-        theaterReducer,
         carouselReducer,
+        theaterReducer,
     }
 );
 

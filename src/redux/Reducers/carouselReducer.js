@@ -1,4 +1,4 @@
-import * as actions from 'redux/types/_constants'
+import * as actions from '../types/_constants'
 
 const initialState = {
     loading: false,
