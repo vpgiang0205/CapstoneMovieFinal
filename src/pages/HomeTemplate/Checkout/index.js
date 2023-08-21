@@ -7,16 +7,14 @@ import { useParams } from 'react-router-dom';
 
 
 function Checkout(props) {
-    const params = useParams();
-    
-     //const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
+    const params = useParams();  
      const loading = useSelector(state => state.QuanLyDatVeReducer.loading)
      const data = useSelector(state => state.QuanLyDatVeReducer.data);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(layChiTietPhongVe(params.id))
-    }, []);
+    }, [dispatch, params.id]);
     if (loading) return <div>Loading...</div>
     return (
         <>
@@ -35,7 +33,7 @@ function Checkout(props) {
                 <div className='col-md-4'>
                     <h3 className='text-center text-success text-2xl'>0đ</h3>
                     <hr />
-                    <h3 className='text-xl text-center'>Tên Phim</h3>
+                    <h3 className='text-xl text-center'>{data.tenPhim}</h3>
                     <hr />
                     <div className='d-flex justify-content-between my-3'>
                         <div>
