@@ -6,15 +6,18 @@ import { layChiTietPhongVe } from '../../../redux/types/_actions';
 import { useParams } from 'react-router-dom';
 
 
-function Checkout() {
-    const param = useParams();
-    const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
+function Checkout(props) {
+    const params = useParams();
+    
+     //const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
+     const loading = useSelector(state => state.QuanLyDatVeReducer.loading)
+     const data = useSelector(state => state.QuanLyDatVeReducer.data);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(layChiTietPhongVe(param.id))
+        dispatch(layChiTietPhongVe(params.id))
     }, []);
-    const {thongTinPhim} = chiTietPhongVe;
+    if (loading) return <div>Loading...</div>
     return (
         <>
         <br />
@@ -32,7 +35,7 @@ function Checkout() {
                 <div className='col-md-4'>
                     <h3 className='text-center text-success text-2xl'>0đ</h3>
                     <hr />
-                    <h3 className='text-xl text-center'>{thongTinPhim.tenPhim}</h3>
+                    <h3 className='text-xl text-center'>Tên Phim</h3>
                     <hr />
                     <div className='d-flex justify-content-between my-3'>
                         <div>
