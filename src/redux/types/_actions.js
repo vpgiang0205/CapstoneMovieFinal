@@ -61,7 +61,6 @@ const actListMovieSuccess = (data) => { return { type: actions.MOVIE_SUCCESS, pa
 const actListMovieFail = (error) => { return { type: actions.MOVIE_FAIL, payload: error } }
 
 
-
 export const actMovieItemDetail = (id) => {
     return (dispatch) => {
         dispatch(actMovieItemDetailRequest)
@@ -91,24 +90,29 @@ export const actMovieItemDetail = (id) => {
     }
 }
 
-const actMovieItemDetailRequest = () => {
-    return {
-        type: actions.MOVIEITEM_REQUEST
+const actMovieItemDetailRequest = () => {return { type: actions.MOVIEITEM_REQUEST}}
+const actMovieItemDetailSuccess = (data) => {return {type: actions.MOVIEITEM_SUCCESS, payload: data}}
+const actMovieItemDetailFail = (error) => {return {type: actions.MOVIEITEM_FAIL,payload: error}};
+
+// Lấy chi tiết phòng vé
+
+export const layChiTietPhongVe = (maLichChieu) => {
+    console.log(maLichChieu);
+    return (dispatch) => {
+        //pending
+        dispatch(actBookingSheatRequest());
+        api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
+            .then((result)=>{
+                if(result.data.statusCode === 200) {               
+                    dispatch(actBookingSheatSuccess(result.data.content));
+                }
+            })
+            .catch((error)=>{
+                dispatch(actBookingSheatFail(error))
+            })
     }
-}
+};
 
-const actMovieItemDetailSuccess = (data) => {
-
-    return {
-        type: actions.MOVIEITEM_SUCCESS,
-        payload: data
-
-    }
-}
-
-const actMovieItemDetailFail = (error) => {
-    return {
-        type: actions.MOVIEITEM_FAIL,
-        payload: error
-    }
-}
+const actBookingSheatRequest = () => {return { type: actions.BOOKING_SHEAT_REQUEST,}};
+const actBookingSheatSuccess = (data) => {return {type: actions.BOOKING_SHEAT_SUCCESS,payload: data,}};
+const actBookingSheatFail = (error) => { return { type: actions.BOOKING_SHEAT_FAIL,payload: error,}};

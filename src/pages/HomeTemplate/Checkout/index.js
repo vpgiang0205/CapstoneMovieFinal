@@ -1,20 +1,17 @@
 import React, { useEffect } from 'react';
 import './style.css';
 import style from './checkout.module.css';
-import { Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { layChiTietPhongVe } from './duck/_actions';
+import { layChiTietPhongVe } from '../../../redux/types/_actions';
 import { useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-function Checkout(props) {
+
+function Checkout() {
     const param = useParams();
     const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // const action = actFetchBookingSheat(props.match.params.id)
-        // dispatch(action)
         dispatch(layChiTietPhongVe(param.id))
     }, []);
     const {thongTinPhim} = chiTietPhongVe;
