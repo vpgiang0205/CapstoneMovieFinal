@@ -22,12 +22,13 @@ const routes = [
                 path: "checkout/:id",
                 element: lazy(() => import("../pages/HomeTemplate/Checkout"))
             },
-            {
-                path: "login-page",
-                element: lazy(() => import("../pages/Login"))
-            }
         ]
+    },
+    {
+        path: "login-page",
+        element: lazy(() => import("../pages/HomeTemplate/Login"))
     }
+
 ]
 
 const renderRoutes = () => {

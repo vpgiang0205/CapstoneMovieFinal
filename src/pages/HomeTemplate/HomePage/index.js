@@ -7,7 +7,6 @@ import './style.css'
 import { actCarousel, actTheater, actListMovie } from 'redux/types/_actions'
 import Carousel from 'react-multi-carousel';
 import HomeBooking from './HomeBooking'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function HomePage() {
 

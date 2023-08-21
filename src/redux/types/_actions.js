@@ -89,6 +89,62 @@ export const actMovieItemDetail = (id) => {
     }
 }
 
-const actMovieItemDetailRequest = () => {return {type: actions.MOVIEITEM_REQUEST}}
-const actMovieItemDetailSuccess = (data) => {return {type: actions.MOVIEITEM_SUCCESS,payload: data}}
-const actMovieItemDetailFail = (error) => {return {type: actions.MOVIEITEM_FAIL,payload: error}}
+const actMovieItemDetailRequest = () => { return { type: actions.MOVIEITEM_REQUEST } }
+const actMovieItemDetailSuccess = (data) => { return { type: actions.MOVIEITEM_SUCCESS, payload: data } }
+const actMovieItemDetailFail = (error) => { return { type: actions.MOVIEITEM_FAIL, payload: error } }
+
+
+export const actAuth = (user, navigate) => {
+    return (dispatch) => {
+        dispatch(actAuthRequest())
+            console.log(user);
+        api.post(`QuanLyNguoiDung/DangNhap`, user)
+            .then((result) => {
+                const user = result.data.content
+
+                // if (!(user.maLoaiNguoiDung === "QuanTri")) {
+                //     // Show error
+                //     const error = {
+                //         response: {
+                //             data: {
+                //                 content: "Bạn không có quyền truy cập!"
+                //             },
+                //         },
+                //     };
+                //     return Promise.reject(error);
+                // }
+
+                // Lưu thông tin lên reducer
+                dispatch(actAuthSuccess(user))
+
+                // Lưu trạng thái đăng nhập
+                localStorage.setItem("USER_LOGIN", JSON.stringify(user))
+
+                // Chuyển hướng
+                navigate("/", {replace: true})
+            })
+            .catch((error) => {
+                dispatch(actAuthFail(error))
+            })
+
+
+    }
+}
+
+const actAuthRequest = () => {
+    return {
+        type: actions.AUTH_REQUEST
+    }
+}
+const actAuthSuccess = (data) => {
+    return {
+        type: actions.AUTH_SUCCESS,
+        payload: data
+    }
+}
+const actAuthFail = (error) => {
+    return {
+        type: actions.AUTH_FAIL,
+        payload: error,
+    }
+}

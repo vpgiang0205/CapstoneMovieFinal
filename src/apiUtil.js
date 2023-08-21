@@ -18,8 +18,8 @@ export const groupid = "GP01"
  */
 
 api.interceptors.request.use((config) => {
-    const accessToken = localStorage.getItem("UserAdmin")
-        ? JSON.parse(localStorage.getItem("UserAdmin")).accessToken
+    const accessToken = localStorage.getItem("USER_LOGIN")
+        ? JSON.parse(localStorage.getItem("USER_LOGIN")).accessToken
         : "";
 
     config.headers = {
@@ -31,5 +31,3 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
-
-export const USER_LOGIN = 'USER_LOGIN'

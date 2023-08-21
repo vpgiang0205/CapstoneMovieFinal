@@ -4,6 +4,14 @@ import { UserOutlined } from '@ant-design/icons';
 import './style.css';
 
 export default function Navbar() {
+
+  const user = JSON.parse(localStorage.getItem("USER_LOGIN")); 
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to log out?")) {
+      localStorage.removeItem("USER_LOGIN");
+    }
+  }
+
   return (
     <div className="d-flex position-fixed w-100" style={{ zIndex: 22 }}>
       <nav className="navbar m-auto navbar-expand-md navbar-light bg-light w-100 px-5">
@@ -28,26 +36,54 @@ export default function Navbar() {
               <li className="nav-item mt-1 text-center">
                 <UserOutlined />
               </li>
-              <li className="nav-item text-center">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? 'my-active nav-link' : 'nav-link'
-                  }
-                  to="/login-page"
-                >
-                  Login
-                </NavLink>
-              </li>
-              <li className="nav-item text-center">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? 'my-active nav-link' : 'nav-link'
-                  }
-                  to="/sign-up"
-                >
-                  Sign up
-                </NavLink>
-              </li>
+              {user ? (
+                <>
+                  <li className="nav-item text-center">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? 'my-active nav-link' : 'nav-link'
+                      }
+                    >
+                      Hi, {user.hoTen ? user.hoTen : user.taiKhoan}
+                    </NavLink>
+                  </li>
+                  <li className="nav-item text-center">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? 'my-active nav-link' : 'nav-link'
+                      }
+                      onClick={handleLogout}
+                      to="/login-page"
+                    >
+                      LogOut
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item text-center">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? 'my-active nav-link' : 'nav-link'
+                      }
+                      to="/login-page"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item text-center">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? 'my-active nav-link' : 'nav-link'
+                      }
+                      to="/sign-up"
+                    >
+                      Sign up
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
