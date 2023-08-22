@@ -198,3 +198,17 @@ const actSeatData = (data) => {
         payload: data,
     }
 }
+
+export const actRemoveSeat = (maGhe) => {
+    return (dispatch) =>{
+        dispatch(actSeatRemoveData(maGhe))
+    }
+}
+
+
+const actSeatRemoveData = (data) => {
+    return {
+        type: actions.SEAT_REMOVE_DATA,
+        payload: data,
+    }
+}

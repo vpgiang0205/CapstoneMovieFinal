@@ -11,7 +11,7 @@ const api = axios.create({
     baseURL: "https://movienew.cybersoft.edu.vn/api",
 })
 
-export const groupid = "GP01"
+export const groupid = "GP03"
 
 /**
  * Interceptors (TOKEN)

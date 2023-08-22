@@ -11,9 +11,14 @@ const seatReducer = (state = initStateGhe, action) => {
                 ...state,
                 gheDaDatArr: [...state.gheDaDatArr, action.payload],
             };
+        case actions.SEAT_REMOVE_DATA:
+            return {
+                ...state,
+                gheDaDatArr: state.gheDaDatArr.filter(ghe => ghe.maGhe !== action.payload),
+            };
         default:
             return state;
     }
-}
+};
 
 export default seatReducer;
