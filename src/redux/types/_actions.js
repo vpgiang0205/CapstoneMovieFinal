@@ -143,7 +143,10 @@ export const layChiTietPhongVe = (maLichChieu) => {
         api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
             .then((result) => {
                 if (result.data.statusCode === 200) {
-                    dispatch(actBookingTicketSuccess(result.data.content));
+                    const {thongTinPhim, danhSachGhe} = result.data.content;
+                    const thongTin = {thongTinPhim, danhSachGhe};
+                    dispatch(actBookingTicketSuccess(thongTin));
+                    //console.log(danhSachGhe);
                 }
             })
             .catch((error) => {
