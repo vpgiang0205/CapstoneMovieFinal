@@ -19,6 +19,13 @@ function Checkout(props) {
     useEffect(() => {
         dispatch(layChiTietPhongVe(params.id))
     }, []);
+    const renderPrice = () => {
+        let total = 0;
+        gheData.forEach((ghe,index) => {
+            total += ghe.giaVe;
+        })
+        return total;
+    }
     const renderThongTinPhim = () => {
         if (!data) {
             return null;
@@ -36,7 +43,7 @@ function Checkout(props) {
                         </div>
                     </div>
                     <div className='col-md-4'>
-                        <h3 className='text-center text-success text-2xl'>0đ</h3>
+                        <h3 className='text-center text-success text-2xl'>{renderPrice().toLocaleString()} VND</h3>
                         <hr />
                         <h3 className='text-xl text-center'>{thongTinPhim.tenPhim}</h3>
                         <hr />
@@ -72,7 +79,11 @@ function Checkout(props) {
                                 <span className='text-danger' style={{ fontWeight: 'bold' }}>Ghế</span>
                             </div>
                             <div className='text-right'>
-                                <span className='text-success'>Ten Ghe</span>
+                                <span className='text-success row'>{gheData.map((ghe,index)=>{
+                                    return (
+                                        <p>{ghe.tenGhe},</p>
+                                    )
+                                })}</span>
                             </div>
                         </div>
                         <hr />
