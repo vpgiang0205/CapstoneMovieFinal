@@ -58,7 +58,7 @@ export default function Auth() {
           </div>
 
           <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-            Bạn chưa có tài khoản ? <NavLink to="register" className="cursor-pointer text-indigo-600 hover:text-indigo-800">Đăng ký</NavLink>
+            Bạn chưa có tài khoản ? <NavLink to="/register-page" className="cursor-pointer text-primary">Đăng ký</NavLink>
           </div>
         </form>
       </div>
