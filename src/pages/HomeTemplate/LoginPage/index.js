@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { actAuth } from 'redux/types/_actions';
 
+
 export default function Auth() {
   const error = useSelector((state) => state.authReducer.error);
   const dispatch = useDispatch();
@@ -39,28 +40,41 @@ export default function Auth() {
   };
 
   return (
-    <div className='container d-flex justify-content-center align-items-center' style={{ minHeight: '100vh' }}>
-      <div className="form-group w-75">
 
-        <h1 className="text-center mb-4">Đăng nhập</h1>
-        {renderError()}
-        <form onSubmit={handleLogin}>
-          <div className='form-group'>
-            <input type="text" name="taikhoan" className="form-control" placeholder='Tên đăng nhập' onChange={handleOnChange} />
-          </div>
+    <div style={{ backgroundImage: 'url("https://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg")' }}>
 
-          <div className='form-group'>
-            <input type="password" name="matkhau" className="form-control" placeholder='Mật khẩu' onChange={handleOnChange} />
-          </div>
+      <div className='position-absolute p-3'>
+        <NavLink to="/">  <span className='text-info'> {`< Trở về trang chủ`}</span></NavLink>
+      </div>
 
-          <div className='form-group'>
-            <button type="submit" className="btn btn-success w-100">Login</button>
-          </div>
 
-          <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-            Bạn chưa có tài khoản ? <NavLink to="/register-page" className="cursor-pointer text-primary">Đăng ký</NavLink>
+      <div className='container d-flex justify-content-center align-items-center' style={{ minHeight: '100vh' }}>
+
+        <div className='col-lg-5 col-sm-6 border rounded py-4 bg-white'>
+
+          <div className="form-group ">
+
+            <h1 className="text-center mb-4">Đăng nhập</h1>
+            {renderError()}
+            <form onSubmit={handleLogin}>
+              <div className='form-group'>
+                <input type="text" name="taikhoan" className="form-control" placeholder='Tên đăng nhập' onChange={handleOnChange} />
+              </div>
+
+              <div className='form-group'>
+                <input type="password" name="matkhau" className="form-control" placeholder='Mật khẩu' onChange={handleOnChange} />
+              </div>
+
+              <div className='form-group'>
+                <button type="submit" className="btn btn-success w-100">Login</button>
+              </div>
+
+              <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+                Bạn chưa có tài khoản ? <NavLink to="/register-page" className="cursor-pointer text-primary">Đăng ký</NavLink>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

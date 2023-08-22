@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { actRegister } from 'redux/types/_actions';
 
 export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const serverError = useSelector((state) => state.registerReducer.error); 
+  const serverError = useSelector((state) => state.registerReducer.error);
 
 
   const initialUserState = {
@@ -21,9 +21,9 @@ export default function Register() {
     errors: { ...initialUserState },
     formValid: false,
   };
-  
+
   const [state, setState] = useState(initialState);
-  
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     let mess = '';
@@ -85,76 +85,95 @@ export default function Register() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="col-md-6">
-        <h2 className="mb-4">Register</h2>
-        {serverError && <div className="text-danger">{serverError}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              name="taiKhoan"
-              className="form-control" required
-              onChange={handleOnChange}
-              value={state.user.taiKhoan}
-            />
-            {state.errors.taiKhoan && <div className="text-danger">{state.errors.taiKhoan}</div>}
-          </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password" required
-              name="matKhau"
-              className="form-control"
-              onChange={handleOnChange}
-              value={state.user.matKhau}
-            />
-            {state.errors.matKhau && <div className="text-danger">{state.errors.matKhau}</div>}
-          </div>
 
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email" required
-              name="email"
-              className="form-control"
-              onChange={handleOnChange}
-              value={state.user.email}
-            />
-            {state.errors.email && <div className="text-danger">{state.errors.email}</div>}
-          </div>
+    <>
 
-          <div className="form-group">
-            <label>Phone Number</label>
-            <input
-              type='text' required
-              name="soDt"
-              className="form-control"
-              onChange={handleOnChange}
-              value={state.user.soDt}
-            />
-            {state.errors.soDt && <div className="text-danger">{state.errors.soDt}</div>}
-          </div>
-
-          <div className="form-group">
-            <label>Full Name</label>
-            <input
-              type='text' required
-              name="hoTen"
-              className="form-control"
-              onChange={handleOnChange}
-              value={state.user.hoTen}
-            />
-            {state.errors.hoTen && <div className="text-danger">{state.errors.hoTen}</div>}
-          </div>
-
-          <button type="submit" className="btn btn-success" disabled={!state.formValid}>
-            Register
-          </button>
-        </form>
+      <div className='position-absolute p-3'>
+        <NavLink to="/">  <span className='text-info'> {`< Trở về trang chủ`}</span></NavLink>
       </div>
-    </div>
+
+      <div className="d-flex justify-content-center align-items-center vh-100" style={{ backgroundImage: 'url("https://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg")' }}>
+
+
+        <div className="col-lg-3 col-sm-6 border rounded py-4 bg-white ">
+
+          <h2 className="mb-4 text-center">Đăng ký</h2>
+          {serverError && <div className="text-danger">{serverError}</div>}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type='text' required
+                name="hoTen"
+                className="form-control"
+                onChange={handleOnChange}
+                value={state.user.hoTen}
+                placeholder='Họ tên *'
+              />
+              {state.errors.hoTen && <div className="text-danger">{state.errors.hoTen}</div>}
+            </div>
+
+            <div className="form-group">
+              <input
+                type="text"
+                name="taiKhoan"
+                className="form-control" required
+                onChange={handleOnChange}
+                value={state.user.taiKhoan}
+                placeholder='Tài khoản *'
+              />
+              {state.errors.taiKhoan && <div className="text-danger">{state.errors.taiKhoan}</div>}
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password" required
+                name="matKhau"
+                className="form-control"
+                onChange={handleOnChange}
+                value={state.user.matKhau}
+                placeholder='Mật khẩu *'
+              />
+              {state.errors.matKhau && <div className="text-danger">{state.errors.matKhau}</div>}
+            </div>
+
+            <div className="form-group">
+              <input
+                type="email" required
+                name="email"
+                className="form-control"
+                onChange={handleOnChange}
+                value={state.user.email}
+                placeholder='Email *'
+              />
+              {state.errors.email && <div className="text-danger">{state.errors.email}</div>}
+            </div>
+
+            <div className="form-group">
+              <input
+                type='text' required
+                name="soDt"
+                className="form-control"
+                onChange={handleOnChange}
+                value={state.user.soDt}
+                placeholder='Số điện thoại *'
+              />
+              {state.errors.soDt && <div className="text-danger">{state.errors.soDt}</div>}
+            </div>
+
+
+            <div className='text-right my-3'>
+              <button type="submit" className="btn btn-success" disabled={!state.formValid}>
+                Register
+              </button>
+            </div>
+
+            <div className="text-right">
+              Bạn bạn đã có tài khoản ? <NavLink to="/login-page" className="cursor-pointer text-primary">Đăng nhập</NavLink>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
