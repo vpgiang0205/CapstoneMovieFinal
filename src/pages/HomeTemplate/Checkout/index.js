@@ -4,6 +4,7 @@ import style from './checkout.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { layChiTietPhongVe } from '../../../redux/types/_actions';
 import { useParams } from 'react-router-dom';
+import Seats from './Seats';
 
 
 function Checkout(props) {
@@ -12,9 +13,9 @@ function Checkout(props) {
     //const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
     const loading = useSelector(state => state.QuanLyDatVeReducer.loading)
     const data = useSelector(state => state.QuanLyDatVeReducer.data);
+    const gheData = useSelector((state) => state.seatReducer.gheDaDatArr);
+    console.log(gheData);
     const dispatch = useDispatch();
-
-    console.log(data);
     useEffect(() => {
         dispatch(layChiTietPhongVe(params.id))
     }, []);
@@ -31,6 +32,7 @@ function Checkout(props) {
                             <div className='bg-dark' style={{ width: '80%', height: 15 }}>
                             </div>
                             <div className={`${style['trapezoid']} text-center`}>Màn hình</div>
+                            <Seats danhSachGhe ={danhSachGhe}/>
                         </div>
                     </div>
                     <div className='col-md-4'>
@@ -70,7 +72,7 @@ function Checkout(props) {
                                 <span className='text-danger' style={{ fontWeight: 'bold' }}>Ghế</span>
                             </div>
                             <div className='text-right'>
-                                <span className='text-success'>{danhSachGhe.tenGhe}</span>
+                                <span className='text-success'>Ten Ghe</span>
                             </div>
                         </div>
                         <hr />
@@ -82,6 +84,7 @@ function Checkout(props) {
             )
         }
     }
+
     if (loading) return <div>Loading...</div>
     return (
         <>
