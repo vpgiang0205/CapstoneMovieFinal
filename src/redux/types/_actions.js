@@ -143,8 +143,8 @@ export const layChiTietPhongVe = (maLichChieu) => {
         api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
             .then((result) => {
                 if (result.data.statusCode === 200) {
-                    const {thongTinPhim, danhSachGhe} = result.data.content;
-                    const thongTin = {thongTinPhim, danhSachGhe};
+                    const { thongTinPhim, danhSachGhe } = result.data.content;
+                    const thongTin = { thongTinPhim, danhSachGhe };
                     dispatch(actBookingTicketSuccess(thongTin));
                     //console.log(danhSachGhe);
                 }
@@ -162,7 +162,7 @@ const actBookingTicketFail = (error) => { return { type: actions.ROOM_TICKET_DET
 // Register action
 export const actRegister = (user, navigate) => {
     return (dispatch) => {
-        dispatch(actRegisterRequest())
+        dispatch(actRegisterRequest)
 
 
         api.post(`QuanLyNguoiDung/DangKy`, user)
@@ -170,28 +170,25 @@ export const actRegister = (user, navigate) => {
                 if (result.data.statusCode === 200) {
                     const user = result.data.content
                     dispatch(actRegisterSuccess(user));
-                    alert("successfully register")
+                    alert("Đăng ký thành công, chuyển về trang đăng nhập !")
                     navigate('/login-page')
                 }
             })
             .catch((error) => {
                 const errorData = error.response.data;
-                console.log(errorData.content);
-                if (errorData.content) {
-                    return actRegisterFail(errorData.content);
-                }
+                dispatch(actRegisterFail(errorData.content));
             })
     }
 }
 
 const actRegisterRequest = () => { return { type: actions.REGISTER_REQUEST } }
 const actRegisterSuccess = (data) => { return { type: actions.REGISTER_SUCCESS, payload: data } }
-const actRegisterFail = (error) => { return { type: actions.REGISTER_FAIL, payload: error, } }
+const actRegisterFail = (error) => { return { type: actions.REGISTER_FAIL, payload: error } }
 
 
 export const actSeat = (ghe) => {
     return (dispatch) => {
-        dispatch(actSeatData(ghe))      
+        dispatch(actSeatData(ghe))
     }
 }
 

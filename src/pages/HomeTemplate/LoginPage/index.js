@@ -50,11 +50,11 @@ export default function Auth() {
 
       <div className='container d-flex justify-content-center align-items-center' style={{ minHeight: '100vh' }}>
 
-        <div className='col-lg-5 col-sm-6 border rounded py-4 bg-white'>
+        <div className='col-lg-5 col-sm-6 border rounded py-2 bg-white'>
 
           <div className="form-group ">
 
-            <h1 className="text-center mb-4">Đăng nhập</h1>
+            <h2 className="text-center mb-4">Đăng nhập</h2>
             {renderError()}
             <form onSubmit={handleLogin}>
               <div className='form-group'>
@@ -65,12 +65,14 @@ export default function Auth() {
                 <input type="password" name="matkhau" className="form-control" placeholder='Mật khẩu' onChange={handleOnChange} />
               </div>
 
-              <div className='form-group'>
-                <button type="submit" className="btn btn-success w-100">Login</button>
-              </div>
+              <div className='form-group text-right'>
+                <div className='my-2'>
+                  <button type="submit" className="btn btn-danger">Login</button>
+                </div>
 
-              <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-                Bạn chưa có tài khoản ? <NavLink to="/register-page" className="cursor-pointer text-primary">Đăng ký</NavLink>
+                <div className="mt-12 text-sm font-display font-semibold text-gray-700 ">
+                  Bạn chưa có tài khoản ? <NavLink to="/register-page" className="cursor-pointer text-primary">Đăng ký</NavLink>
+                </div>
               </div>
             </form>
           </div>

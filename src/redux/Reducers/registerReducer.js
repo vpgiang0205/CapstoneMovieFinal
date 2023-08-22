@@ -26,10 +26,9 @@ const registerReducer = (state = initialState, action) => {
             state.loading = false
             state.data = null
             state.error = action.payload
-            console.log(action.payload);
             return { ...state }
         }
-
+        
         default:
             return { ...state }
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { actRegister } from 'redux/types/_actions';
@@ -7,7 +7,6 @@ export default function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const serverError = useSelector((state) => state.registerReducer.error);
-
 
   const initialUserState = {
     taiKhoan: '',
@@ -77,10 +76,10 @@ export default function Register() {
     });
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Dispatch
     dispatch(actRegister(state.user, navigate));
   };
 
@@ -110,7 +109,7 @@ export default function Register() {
                 value={state.user.hoTen}
                 placeholder='Họ tên *'
               />
-              {state.errors.hoTen && <div className="text-danger">{state.errors.hoTen}</div>}
+              {state.errors.hoTen && <div className="text-danger my-2">{state.errors.hoTen}</div>}
             </div>
 
             <div className="form-group">
@@ -122,7 +121,7 @@ export default function Register() {
                 value={state.user.taiKhoan}
                 placeholder='Tài khoản *'
               />
-              {state.errors.taiKhoan && <div className="text-danger">{state.errors.taiKhoan}</div>}
+              {state.errors.taiKhoan && <div className="text-danger my-2">{state.errors.taiKhoan}</div>}
             </div>
 
             <div className="form-group">
@@ -134,7 +133,7 @@ export default function Register() {
                 value={state.user.matKhau}
                 placeholder='Mật khẩu *'
               />
-              {state.errors.matKhau && <div className="text-danger">{state.errors.matKhau}</div>}
+              {state.errors.matKhau && <div className="text-danger my-2">{state.errors.matKhau}</div>}
             </div>
 
             <div className="form-group">
@@ -146,7 +145,7 @@ export default function Register() {
                 value={state.user.email}
                 placeholder='Email *'
               />
-              {state.errors.email && <div className="text-danger">{state.errors.email}</div>}
+              {state.errors.email && <div className="text-danger my-2">{state.errors.email}</div>}
             </div>
 
             <div className="form-group">
@@ -158,13 +157,13 @@ export default function Register() {
                 value={state.user.soDt}
                 placeholder='Số điện thoại *'
               />
-              {state.errors.soDt && <div className="text-danger">{state.errors.soDt}</div>}
+              {state.errors.soDt && <div className="text-danger my-2">{state.errors.soDt}</div>}
             </div>
 
 
             <div className='text-right my-3'>
-              <button type="submit" className="btn btn-success" disabled={!state.formValid}>
-                Register
+              <button type="submit" className="btn btn-danger" disabled={!state.formValid}>
+                Sign Up
               </button>
             </div>
 
