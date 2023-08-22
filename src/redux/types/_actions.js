@@ -187,3 +187,17 @@ export const actRegister = (user, navigate) => {
 const actRegisterRequest = () => { return { type: actions.REGISTER_REQUEST } }
 const actRegisterSuccess = (data) => { return { type: actions.REGISTER_SUCCESS, payload: data } }
 const actRegisterFail = (error) => { return { type: actions.REGISTER_FAIL, payload: error, } }
+
+
+export const actSeat = (ghe) => {
+    return (dispatch) => {
+        dispatch(actSeatData(ghe))      
+    }
+}
+
+const actSeatData = (data) => {
+    return {
+        type: actions.SEAT_DATA,
+        payload: data,
+    }
+}

@@ -6,6 +6,7 @@ import movieItemDetailReducer from '../redux/Reducers/movieItemDetailReducer';
 import QuanLyDatVeReducer from 'redux/Reducers/bookingTicketReducer';
 import authReducer from 'redux/Reducers/authReducer';
 import registerReducer from 'redux/Reducers/registerReducer';
+import seatReducer from 'redux/Reducers/seatReducer';
 
 const rootReducer = combineReducers(
     {
@@ -13,6 +14,7 @@ const rootReducer = combineReducers(
         listMovieReducer,
         movieItemDetailReducer,
         QuanLyDatVeReducer,
+        seatReducer,
 
         // Auth Login 
         authReducer,
