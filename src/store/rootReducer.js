@@ -5,6 +5,8 @@ import theaterReducer from '../redux/Reducers/theaterReducer';
 import movieItemDetailReducer from '../redux/Reducers/movieItemDetailReducer';
 import QuanLyDatVeReducer from 'redux/Reducers/bookingTicketReducer';
 import authReducer from 'redux/Reducers/authReducer';
+import registerReducer from 'redux/Reducers/registerReducer';
+
 const rootReducer = combineReducers(
     {
         // Movie Reducer
@@ -14,7 +16,8 @@ const rootReducer = combineReducers(
 
         // Auth Login 
         authReducer,
-
+        registerReducer,
+        
         // Home
         carouselReducer,
         theaterReducer,

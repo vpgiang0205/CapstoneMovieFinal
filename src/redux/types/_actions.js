@@ -128,23 +128,9 @@ export const actAuth = (user, navigate) => {
     }
 }
 
-const actAuthRequest = () => {
-    return {
-        type: actions.AUTH_REQUEST
-    }
-}
-const actAuthSuccess = (data) => {
-    return {
-        type: actions.AUTH_SUCCESS,
-        payload: data
-    }
-}
-const actAuthFail = (error) => {
-    return {
-        type: actions.AUTH_FAIL,
-        payload: error,
-    }
-}
+const actAuthRequest = () => { return { type: actions.AUTH_REQUEST } }
+const actAuthSuccess = (data) => { return { type: actions.AUTH_SUCCESS, payload: data } }
+const actAuthFail = (error) => { return { type: actions.AUTH_FAIL, payload: error, } }
 
 
 // Lấy chi tiết phòng vé
@@ -155,17 +141,46 @@ export const layChiTietPhongVe = (maLichChieu) => {
         //pending
         dispatch(actBookingTicketRequest());
         api.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
-            .then((result)=>{
-                if(result.data.statusCode === 200) {               
+            .then((result) => {
+                if (result.data.statusCode === 200) {
                     dispatch(actBookingTicketSuccess(result.data.content));
                 }
             })
-            .catch((error)=>{
+            .catch((error) => {
                 dispatch(actBookingTicketFail(error))
             })
     }
 };
 
-const actBookingTicketRequest = () => {return { type: actions.ROOM_TICKET_DETAIL_REQUEST,}};
-const actBookingTicketSuccess = (data) => {return {type: actions.ROOM_TICKET_DETAIL_SUCCESS,payload: data,}};
-const actBookingTicketFail = (error) => { return { type: actions.ROOM_TICKET_DETAIL_FAIL,payload: error,}};
+const actBookingTicketRequest = () => { return { type: actions.ROOM_TICKET_DETAIL_REQUEST, } };
+const actBookingTicketSuccess = (data) => { return { type: actions.ROOM_TICKET_DETAIL_SUCCESS, payload: data, } };
+const actBookingTicketFail = (error) => { return { type: actions.ROOM_TICKET_DETAIL_FAIL, payload: error, } };
+
+// Register action
+export const actRegister = (user, navigate) => {
+    return (dispatch) => {
+        dispatch(actRegisterRequest())
+
+
+        api.post(`QuanLyNguoiDung/DangKy`, user)
+            .then((result) => {
+                if (result.data.statusCode === 200) {
+                    const user = result.data.content
+                    dispatch(actRegisterSuccess(user));
+                    alert("successfully register")
+                    navigate('/login-page')
+                }
+            })
+            .catch((error) => {
+                const errorData = error.response.data;
+                console.log(errorData.content);
+                if (errorData.content) {
+                    return actRegisterFail(errorData.content);
+                }
+            })
+    }
+}
+
+const actRegisterRequest = () => { return { type: actions.REGISTER_REQUEST } }
+const actRegisterSuccess = (data) => { return { type: actions.REGISTER_SUCCESS, payload: data } }
+const actRegisterFail = (error) => { return { type: actions.REGISTER_FAIL, payload: error, } }

@@ -12,7 +12,7 @@ const routes = [
             },
             {
                 path: "detail-page/:id",
-                element: lazy(() => import("../pages/HomeTemplate/MovieItemDetail"))
+                element: lazy(() => import("../pages/HomeTemplate/MovieItemDetailPage"))
             },
             {
                 path: "about-page",
@@ -26,8 +26,13 @@ const routes = [
     },
     {
         path: "login-page",
-        element: lazy(() => import("../pages/HomeTemplate/Login"))
-    }
+        element: lazy(() => import("../pages/HomeTemplate/LoginPage"))
+    },
+    {
+        path: "register-page",
+        element: lazy(() => import("../pages/HomeTemplate/RegisterPage"))
+    },
+    
 
 ]
 

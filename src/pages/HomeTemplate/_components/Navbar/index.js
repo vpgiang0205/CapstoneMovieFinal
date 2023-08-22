@@ -77,7 +77,7 @@ export default function Navbar() {
                       className={({ isActive }) =>
                         isActive ? 'my-active nav-link' : 'nav-link'
                       }
-                      to="/sign-up"
+                      to="/register-page"
                     >
                       Sign up
                     </NavLink>
