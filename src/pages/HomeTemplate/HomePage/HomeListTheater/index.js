@@ -17,13 +17,10 @@ export default function HomeListTheater(props) {
       setTabPosition(isMobile ? 'top' : 'left');
     };
 
-    // Initial call
     handleWindowResize();
 
-    // Add event listener for window resize
     window.addEventListener('resize', handleWindowResize);
 
-    // Clean up event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -60,7 +57,7 @@ export default function HomeListTheater(props) {
                       <img width="100" className='col-3' height="130" src={phim.hinhAnh} alt={phim.tenPhim} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75/75" }} />
 
                       <div className="col-9">
-                        <NavLink to = {`/detail-page/${phim.maPhim}`}> <h4 className="" >{phim.tenPhim}</h4></NavLink>
+                        <NavLink to={`/detail-page/${phim.maPhim}`}> <h4 className="" >{phim.tenPhim}</h4></NavLink>
                         <p>{cumRap.diaChi}</p>
                         <div className="">
                           {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
