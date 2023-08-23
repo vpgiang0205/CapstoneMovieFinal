@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { actMovieItemDetail } from 'redux/types/_actions';
@@ -14,18 +14,32 @@ export default function MovieItemDetail() {
   const data = useSelector((state) => state.movieItemDetailReducer.data);
   const dispatch = useDispatch();
 
+  const [tabPosition, setTabPosition] = useState('top');
+
+
   useEffect(() => {
     // Fetch movie details when the component mounts
     dispatch(actMovieItemDetail(param.id));
+    const handleWindowResize = () => {
+      const isMobile = window.innerWidth <= 1024;
+      setTabPosition(isMobile ? 'top' : 'left');
+    };
+
+    handleWindowResize();
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+
+
   }, [dispatch, param.id]); // Ensure to add 'dispatch' and 'param.id' to the dependency array
   if (!data) {
     return null
   }
   const { movieDetails, movieShowTimes } = data
 
-  const state = {
-    tabPosition: 'left',
-  };
 
   const renderTheater = () => {
     return movieShowTimes?.heThongRapChieu.map((htr, index) => {
@@ -35,19 +49,22 @@ export default function MovieItemDetail() {
           key={index}
         >
           {htr.cumRapChieu?.map((cumRap, index) => {
-            return <div key={index}>
+            return <div key={index} className='mb-5'>
               <div className="d-flex">
                 <img style={{ width: 60, height: 60 }} src={cumRap.hinhAnh} alt="..." />
-                <div className="ml-2">
+                <div className="ml-2 ">
                   <p style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 1 }} >{cumRap.tenCumRap}</p>
                   <p className="text-gray-400" style={{ marginTop: 0 }}>{cumRap.diaChi}</p>
                 </div>
               </div>
-              <div className="thong-tin-lich-chieu grid grid-cols-4">
+              <div className="row">
                 {cumRap.lichChieuPhim?.map((lichChieu, index) => {
-                  return <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="col-span-1 font-bold btn btn-success">
-                    {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                  </NavLink>
+
+                  return <div className='col-md-3'>
+                    <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="w-100 m-1 btn btn-outline-success font-weight-light p-0">
+                      {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy ~ hh:mm A')}
+                    </NavLink>
+                  </div>
                 })}
               </div>
             </div>
@@ -59,9 +76,9 @@ export default function MovieItemDetail() {
 
 
   return (
-    <div id='movie-detail' className='container py-5'>
+    <div id='movie-detail' className='container-fluid py-5'>
       {data && (
-        <div className='row my-3'>
+        <div className='d-flex my-5 container'>
           <div className='col-md-6'>
             <img
               src={movieDetails.hinhAnh}
@@ -95,9 +112,9 @@ export default function MovieItemDetail() {
           </div>
         </div>
       )}
-      <div className='row'>
+      <div className='container'>
         {data && (
-          <Tabs tabPosition={state.tabPosition}>
+          <Tabs tabPosition={tabPosition}>
             {renderTheater()}
           </Tabs>
         )}

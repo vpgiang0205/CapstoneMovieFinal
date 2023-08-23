@@ -36,13 +36,13 @@ export default function HomeListTheater(props) {
           tab={<img className='rounded-full' width="50" src={theaterGroup.logo} alt={theaterGroup.tenHeThongRap} />}
           key={index}
         >
-          <Tabs tabPosition={tabPosition} className='overflow-y'>
+          <Tabs tabPosition={tabPosition} className='text-white overflow-y'>
             {theaterGroup.lstCumRap?.map((cumRap, index) => {
               const shortDiaChi = cumRap.diaChi.length > 40 ? cumRap.diaChi.substring(0, 40) + "..." : cumRap.diaChi;
 
               return <TabPane tab=
                 <div className='d-flex text-overflow'>
-                  {<img src="https://media.cnn.com/api/v1/images/stellar/prod/210406161315-01-movie-theater-covid-0315.jpg?q=w_2129,h_1198,x_0,y_0,c_fill" className='rounded-full' width="50" />}
+                  {<img src="https://media.cnn.com/api/v1/images/stellar/prod/210406161315-01-movie-theater-covid-0315.jpg?q=w_2129,h_1198,x_0,y_0,c_fill" className='rounded-full' width="50" alt='pictur' />}
 
                   <p className='text-left ml-2'> {cumRap.tenCumRap}
                     <br />{shortDiaChi}
@@ -59,11 +59,14 @@ export default function HomeListTheater(props) {
                       <div className="col-9">
                         <NavLink to={`/detail-page/${phim.maPhim}`}> <h4 className="" >{phim.tenPhim}</h4></NavLink>
                         <p>{cumRap.diaChi}</p>
-                        <div className="">
+
+                        <div className="d-flex flex-wrap">
                           {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
-                            return <NavLink className="btn btn-success m-1 font-weight-light" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
-                              {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy ~ hh:mm A')}
-                            </NavLink>
+                            return <div className='col-md-4'>
+                              <NavLink className="w-100 m-1 btn btn-outline-danger font-weight-light p-0" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                                {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy ~ hh:mm A')}
+                              </NavLink>
+                            </div>
                           })}
                         </div>
                       </div>
@@ -84,7 +87,7 @@ export default function HomeListTheater(props) {
 
   return (
     <div className='my-3'>
-      <div className='py-3'>
+      <div className='py-3 text-danger'>
         <h2>DANH SÁCH CÁC RẠP</h2>
       </div>
       <Tabs tabPosition={tabPosition}>

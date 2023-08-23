@@ -10,3 +10,44 @@
 .overflow::-webkit-scrollbar {
     display: none;
 }
+
+
+#section__ListCarousel {
+    position: fixed;
+    width: 100%;
+}
+
+.main {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding-top: 50rem;
+}
+
+#section__ListMovie {
+    position: relative;
+}
+
+/* Add these styles to your existing CSS */
+.dark-bg {
+    background-color: rgba(0, 0, 0, 1);
+    /* Adjust the opacity and color as needed */
+    transition: background-color 0.5s ease;
+}
+
+
+/* tablet: 740<= width < 1024 */
+
+@media screen and (min-width: 740px) and (max-width: 1024px) {
+    .main {
+        padding: 0;
+        padding-top: 30rem;
+    }
+}
+
+/* moblie: width < 740px */
+@media screen and (max-width: 739px) {
+    .main {
+        padding-top: 18rem;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeCarousel from './HomeCarousel'
 import HomeListTheater from './HomeListTheater'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,14 +7,27 @@ import { actCarousel, actTheater, actListMovie } from 'redux/types/_actions'
 import Carousel from 'react-multi-carousel';
 import HomeBooking from './HomeBooking'
 import HomeListMovie from './HomeListMovie'
+import Footer from './Footer'
 
 export default function HomePage() {
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(actListMovie())
     dispatch(actCarousel())
     dispatch(actTheater())
+
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+
   }, [])
 
   const carouselData = useSelector((state) => state.carouselReducer.data)
@@ -29,7 +42,11 @@ export default function HomePage() {
   }
 
   const renderHomeListMovie = () => {
-    return <HomeListMovie listMovie={movieData} />
+    return <>
+      <HomeListMovie listMovie={movieData} />
+      <HomeListMovie listMovie={movieData} />
+    </>
+
   }
 
   const renderHomeListTheater = () => {
@@ -56,34 +73,41 @@ export default function HomePage() {
   };
 
   return (
-    <div className='py-5'>
-      <section className='home-carousel' id='section__ListCarousel'>
-        <div className=''>
-          {carouselData && (
-            <Carousel
-              responsive={bannerResponsive}
-              autoPlay={true}
-              autoPlaySpeed={5000}
-              infinite={true}
-            >
-              {renderHomeCarousel()}
-            </Carousel>
-          )}
-        </div>
+    <div>
+      <section className='py-5 h-100vh' id='section__ListCarousel'>
+        {carouselData && (
+          <Carousel
+            responsive={bannerResponsive}
+            autoPlay={true}
+            autoPlaySpeed={5000}
+            infinite={true}
+          >
+            {renderHomeCarousel()}
+          </Carousel>
+        )}
       </section>
 
       <section>
         <HomeBooking />
       </section>
-      <section id='section__ListMovie'>
-        {movieData && (renderHomeListMovie())}
-      </section>
+      
+      <main className={`main ${scrollPosition > 0 ? 'dark-bg' : ''}`} >
+        <section id='section__ListMovie' className='container-fluid'>
+          {movieData && (renderHomeListMovie())}
+        </section>
 
-      <section id='section__ListTheater' className='overflow'>
-        <div className='container'>
-          {theaterData && (renderHomeListTheater())}
-        </div>
-      </section>
+        <section id='section__ListTheater' className='my-5'>
+          <div className='container '>
+            {theaterData && (renderHomeListTheater())}
+          </div>
+        </section>
+
+        <section>
+          <Footer/>
+        </section>
+
+      </main>
+
     </div>
   )
 }

@@ -13,9 +13,9 @@ export default function Navbar() {
   }
 
   return (
-    <div className="d-flex position-fixed w-100" style={{ zIndex: 22 }}>
-      <nav className="navbar m-auto navbar-expand-md navbar-light bg-light w-100 px-5">
-        <div className="container">
+    <div className="d-flex position-fixed w-100 bg-danger" style={{ zIndex: 22 }}>
+      <nav className="navbar  m-auto navbar-expand-md w-100 px-5">
+        <div className="w-100 d-flex ">
           <NavLink className="navbar-brand" to="/">
             HOME
           </NavLink>
@@ -31,7 +31,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
             <ul className="navbar-nav justify-content-center">
               <li className="nav-item mt-1 text-center">
                 <UserOutlined />

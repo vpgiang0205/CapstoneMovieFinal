@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className='bg-dark text-light py-2 footerGeneral'>
       <div className='container text-center'>
         <p>&copy; {new Date().getFullYear()} Movie Capstone Project</p>
-        <p>Created by Your Name</p>
+        <p>Giang, Huy</p>
       </div>
     </footer>
   );
