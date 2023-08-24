@@ -8,7 +8,7 @@ export default function HomeCarousel(props) {
   return (
     <>
       <Link to={`/detail-page/${image.maPhim}`}>
-        <img className="homeCarousel-img " src={image.hinhAnh} alt={image.tenPhim} />
+        <img className="homeCarousel-img img" src={image.hinhAnh} alt={image.tenPhim} />
       </Link >
     </>
   );

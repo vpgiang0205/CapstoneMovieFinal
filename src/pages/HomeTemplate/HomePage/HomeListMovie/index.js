@@ -39,14 +39,14 @@ const HomeListMovie = (props) => {
         <div className="card text-center mx-2" key={index}>
           <div className="card-overlay-container"></div>
           <img className="card-img-top" src={movie.hinhAnh} alt={movie.tenPhim} />
-          <div className="card-body d-flex flex-column justify-content-between">
-            <div>
+          <div className="card-body d-flex flex-column">
+            <div className="text-center card-details"> 
               <Link to={`/detail-page/${movie.maPhim}`}>
                 <h5 className="card-title">{movie.tenPhim}</h5>
                 <p className="card-text">{trimText(movie.moTa, 150)}</p>
               </Link>
             </div>
-            <div className="mt-auto">
+            <div className="mt-3">
               <Link to={`/detail-page/${movie.maPhim}`} className="btn btn-danger">
                 Detail
               </Link>
@@ -58,12 +58,16 @@ const HomeListMovie = (props) => {
   };
   
 
+
   return (
     <div className="list-movie my-3">
+      <div className='py-3 text-danger'>
+        <h2>DANH SÁCH CÁC PHIM</h2>
+      </div>
       <Carousel responsive={listMovieResponsive}
-      autoPlay={true}
-      autoPlaySpeed={5000}
-      infinite={true}
+        autoPlay={true}
+        autoPlaySpeed={5000}
+        infinite={true}
       >{renderListMovie()}</Carousel>
     </div>
   );

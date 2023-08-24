@@ -4,11 +4,3 @@
     width: 100%;
     position: relative;
 }
-
-.carousel__Button {
-    position: absolute;
-    top: 50%;
-    left: 30rem;
-    z-index: 111 !important;
-    cursor: pointer;
-} 

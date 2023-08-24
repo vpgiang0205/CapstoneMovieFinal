@@ -61,7 +61,7 @@ export default function MovieItemDetail() {
                 {cumRap.lichChieuPhim?.map((lichChieu, index) => {
 
                   return <div className='col-md-3'>
-                    <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="w-100 m-1 btn btn-outline-primary font-weight-light p-0">
+                    <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="w-100 m-1 btn btn-outline-danger font-weight-light p-0">
                       {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyyy - hh:mm A')}
                     </NavLink>
                   </div>
@@ -76,48 +76,65 @@ export default function MovieItemDetail() {
 
 
   return (
-    <div id='movie-detail' className='container py-5 text-white'>
-      {data && (
-        <div className='row my-5'>
-          <div className='col-md-6'>
-            <img
-              src={movieDetails.hinhAnh}
-              alt={movieDetails.tenPhim}
-              className='img-fluid rounded'
-            />
-          </div>
+    <div id='movie-detail' className='my-5 w-75 m-auto py-5 text-white'>
 
-          <div className='col-md-6 p-3'>
-            <h2 className='mb-4'>{movieDetails.tenPhim}</h2>
-            <p className='mb-4'>{movieDetails.moTa}</p>
-            <p>
-              <strong>Ngày khởi chiếu:</strong> {movieDetails.ngayKhoiChieu}
-            </p>
-            <div className='mb-4'>
-            </div>
-            <p>
-              <strong>Đánh giá:</strong> {movieDetails.danhGia}
-            </p>
-            <p>
-              <strong>Hot:</strong> {movieDetails.hot ? 'Có' : 'Không'}
-            </p>
-            <p>
-              <strong>Đang chiếu:</strong> {movieDetails.dangChieu ? 'Có' : 'Không'}
-            </p>
-            <p>
-              <strong>Sắp chiếu:</strong> <span className='text-danger'> {movieDetails.sapChieu ? 'Có' : 'Không'}</span>
-            </p>
+      <div className='my-2'>
+        <h2 className='text-danger'>Thông tin chi tiết </h2>
+      </div>
 
-            <NavLink></NavLink>
-          </div>
-        </div>
-      )}
-      <div className='container'>
+      <div className=''>
+
         {data && (
-          <Tabs tabPosition={tabPosition}>
-            {renderTheater()}
-          </Tabs>
+          <div className='row my-4'>
+
+            <div className='col-md-6'>
+              <img
+                src={movieDetails.hinhAnh}
+                alt={movieDetails.tenPhim}
+                className='img-fluid rounded'
+              />
+            </div>
+
+            <div className='col-md-6 p-3'>
+              <h2 className='mb-4'>{movieDetails.tenPhim}</h2>
+              <p className='mb-4'>{movieDetails.moTa}</p>
+              <p>
+                <strong>Ngày khởi chiếu:</strong> {movieDetails.ngayKhoiChieu}
+              </p>
+              <div className='mb-4'>
+              </div>
+              <p>
+                <strong>Đánh giá:</strong> {movieDetails.danhGia}
+              </p>
+              <p>
+                <strong>Hot:</strong> {movieDetails.hot ? 'Có' : 'Không'}
+              </p>
+              <p>
+                <strong>Đang chiếu:</strong> {movieDetails.dangChieu ? 'Có' : 'Không'}
+              </p>
+              <p>
+                <strong>Sắp chiếu:</strong> <span className='text-danger'> {movieDetails.sapChieu ? 'Có' : 'Không'}</span>
+              </p>
+
+              <NavLink></NavLink>
+            </div>
+          </div>
         )}
+      </div>
+
+      <div className='container-fluid'>
+      
+        <div className='my-2'>
+          <h2 className='text-danger'>Danh sách cụm rạp đang chiếu </h2>
+        </div>
+
+        <div className=' my-4'>
+          {data && (
+            <Tabs tabPosition={tabPosition}>
+              {renderTheater()}
+            </Tabs>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,21 +1,24 @@
-#section__ListCarousel {
+.fixed {
     position: fixed;
     width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .main {
-    transform: translateY(55rem);
+    padding-top: 50%;
+    z-index: 3;
 }
 
-#section__ListMovie {
-    position: relative;
-}
-
-/* DARK BACKGROUND */
 .dark-bg {
     background-color: rgba(0, 0, 0, 1);
     transition: background-color 0.5s ease;
-    z-index: 99;
+    z-index: 2;
+}
+
+/* 
+.overlay {
+    position: relative;
 }
 
 .dark-overlay {
@@ -31,19 +34,27 @@
 .dark-overlay-show {
     opacity: 1;
     z-index: 1;
-}
+}  */
 
 /* RESPONSIVE */
 /* tablet: 740<= width < 1024 */
 @media screen and (min-width: 740px) and (max-width: 1024px) {
+    .fixed {
+        position: unset;
+    }
+
     .main {
-        transform: translateY(30rem);
+        padding-top: unset
     }
 }
 
-/* moblie: width < 740px */
+/* moblie: width < 740px  */
 @media screen and (max-width: 739px) {
+    .fixed {
+        position: unset;
+    }
+
     .main {
-        transform: translateY(15rem);
+        padding-top: unset
     }
 }

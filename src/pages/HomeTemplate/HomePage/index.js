@@ -43,7 +43,6 @@ export default function HomePage() {
   const renderHomeListMovie = () => {
     return <>
       <HomeListMovie listMovie={movieData} />
-      <HomeListMovie listMovie={movieData} />
     </>
 
   }
@@ -72,34 +71,30 @@ export default function HomePage() {
   };
 
   return (
-    <div>
-      <section id='section__ListCarousel'>
-        <div className={`dark-overlay ${scrollPosition > 0 ? 'dark-overlay-show' : ''}`}></div>
-        <div className="h-100vh" >
-          {carouselData && (
-            <Carousel
-              responsive={bannerResponsive}
-              autoPlay={true}
-              autoPlaySpeed={5000}
-              infinite={true}
-            >
-              {renderHomeCarousel()}
-            </Carousel>
-          )}
+    <div className={`py-5 ${scrollPosition > 250 ? 'dark-bg' : ''} `}>
+      {carouselData && (
+        <Carousel
+          responsive={bannerResponsive}
+          autoPlay={true}
+          autoPlaySpeed={5000}
+          infinite={true}
+          className={`fixed`}
+        >
+          {renderHomeCarousel()}
 
-        </div>
-      </section>
+        </Carousel>
+      )}
 
-      <main className={`main ${scrollPosition > 0 ? 'dark-bg' : ''}`} >
+
+      <main className='main'>
         <section id='section__ListMovie' className='container-fluid'>
           {movieData && (renderHomeListMovie())}
 
-          <div className='container '>
-            {theaterData && (renderHomeListTheater())}
-          </div>
+        </section>
+        <section id='section__ListTheater' className='my-5'>
+          {theaterData && (renderHomeListTheater())}
         </section>
       </main>
-
     </div>
   )
 }

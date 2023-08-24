@@ -12,6 +12,6 @@ li, a:hover {
 }
 
 .navbar__Container{
-  z-index: 99;
+  z-index: 9999;
   top: 0
 }

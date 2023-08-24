@@ -57,13 +57,13 @@ export default function HomeListTheater(props) {
                       <img width="100" className='col-2' height="100" src={phim.hinhAnh} alt={phim.tenPhim} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75/75" }} />
 
                       <div className="col-9">
-                        <NavLink to={`/detail-page/${phim.maPhim}`}> <h4 className="" >{phim.tenPhim}</h4></NavLink>
+                        <NavLink to={`/detail-page/${phim.maPhim}`}> <h4 className="text-danger" >{phim.tenPhim}</h4></NavLink>
                         <p>{cumRap.diaChi}</p>
 
                         <div className="d-flex flex-wrap">
                           {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
                             return <div className='col-md-4' key={index}>
-                              <NavLink className=" m-1 btn btn-outline-primary font-weight-light p-1" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                              <NavLink className=" m-1 btn btn-outline-light font-weight-light p-1" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                                 {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy hh:mm A')}
                               </NavLink>
                             </div>
@@ -90,9 +90,11 @@ export default function HomeListTheater(props) {
       <div className='py-3 text-danger'>
         <h2>DANH SÁCH CÁC RẠP</h2>
       </div>
-      <Tabs tabPosition={tabPosition}>
-        {renderTheater()}
-      </Tabs>
+      <div className='container'>
+        <Tabs tabPosition={tabPosition}>
+          {renderTheater()}
+        </Tabs>
+      </div>
     </div>
   );
 }
