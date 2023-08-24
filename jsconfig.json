@@ -13,6 +13,9 @@
       ],
       "redux/*": [
         "../../../redux"
+      ],
+      "assets/*": [
+        "./src/assets"
       ]
     }
   }

@@ -1,0 +1,15 @@
+@import url(./_Variable.css);
+/* IMPORTANT SET */
+body {
+    background-color: var(--background-color-primary) !important;
+    color: white;
+  }
+  
+  :where(.css-dev-only-do-not-override-byeoj0).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: red;
+  }
+  
+  .ant-tabs-tab:hover {
+    color: red !important;
+  }
+  

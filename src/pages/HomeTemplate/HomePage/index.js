@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import './style.css'
 import { actCarousel, actTheater, actListMovie } from 'redux/types/_actions'
 import Carousel from 'react-multi-carousel';
-import HomeBooking from './HomeBooking'
 import HomeListMovie from './HomeListMovie'
-import Footer from './Footer'
+
 
 export default function HomePage() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -74,38 +73,31 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className='py-5 h-100vh' id='section__ListCarousel'>
-        {carouselData && (
-          <Carousel
-            responsive={bannerResponsive}
-            autoPlay={true}
-            autoPlaySpeed={5000}
-            infinite={true}
-          >
-            {renderHomeCarousel()}
-          </Carousel>
-        )}
+      <section id='section__ListCarousel'>
+        <div className={`dark-overlay ${scrollPosition > 0 ? 'dark-overlay-show' : ''}`}></div>
+        <div className="h-100vh" >
+          {carouselData && (
+            <Carousel
+              responsive={bannerResponsive}
+              autoPlay={true}
+              autoPlaySpeed={5000}
+              infinite={true}
+            >
+              {renderHomeCarousel()}
+            </Carousel>
+          )}
+
+        </div>
       </section>
 
-      <section>
-        <HomeBooking />
-      </section>
-      
       <main className={`main ${scrollPosition > 0 ? 'dark-bg' : ''}`} >
         <section id='section__ListMovie' className='container-fluid'>
           {movieData && (renderHomeListMovie())}
-        </section>
 
-        <section id='section__ListTheater' className='my-5'>
           <div className='container '>
             {theaterData && (renderHomeListTheater())}
           </div>
         </section>
-
-        <section>
-          <Footer/>
-        </section>
-
       </main>
 
     </div>

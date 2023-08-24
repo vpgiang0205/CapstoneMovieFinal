@@ -1,31 +1,30 @@
 import React, { useEffect } from 'react';
+import style from './checkout.module.css'
 import './style.css';
-import style from './checkout.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { layChiTietPhongVe } from '../../../redux/types/_actions';
 import { useParams } from 'react-router-dom';
 import Seats from './Seats';
 
-
-function Checkout(props) {
+function Checkout() {
     const params = useParams();
-
-    //const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
-    const loading = useSelector(state => state.QuanLyDatVeReducer.loading)
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.QuanLyDatVeReducer.loading);
     const data = useSelector(state => state.QuanLyDatVeReducer.data);
     const gheData = useSelector((state) => state.seatReducer.gheDaDatArr);
-    console.log(gheData);
-    const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(layChiTietPhongVe(params.id))
+        dispatch(layChiTietPhongVe(params.id));
     }, []);
+
     const renderPrice = () => {
         let total = 0;
-        gheData.forEach((ghe,index) => {
+        gheData.forEach((ghe, index) => {
             total += ghe.giaVe;
-        })
+        });
         return total;
-    }
+    };
+
     const renderThongTinPhim = () => {
         if (!data) {
             return null;
@@ -33,80 +32,45 @@ function Checkout(props) {
             const { danhSachGhe } = data;
             const { thongTinPhim } = data;
             return (
-                <div className='d-flex bookingTicket'>
-                    <div className='col-md-8'>
-                        <div className='justify-content-center'>
-                            <div className='bg-dark' style={{ width: '80%', height: 15 }}>
+                <div className='booking-ticket-container row my-5 text-white '>
+                    <div className='seat-selection-container col-8'>
+                        <div className=' justify-content-center'>
+                            <div className='bg-white' style={{ width: '100%', height: 15 }}>
                             </div>
-                            <div className={`${style['trapezoid']} text-center`}>Màn hình</div>
-                            <Seats danhSachGhe ={danhSachGhe}/>
+                            <div className={`${style['trapezoid']} text-center m-auto`}>Màn hình</div>
+                        </div>
+                        <div className='seats-container'>
+                            <Seats danhSachGhe={danhSachGhe} />
                         </div>
                     </div>
-                    <div className='col-md-4'>
-                        <h3 className='text-center text-success text-2xl'>{renderPrice().toLocaleString()} VND</h3>
+                    <div className='booking-summary-container col-4'>
+                        <h3 className='movie-title'>{thongTinPhim.tenPhim}</h3>
                         <hr />
-                        <h3 className='text-xl text-center'>{thongTinPhim.tenPhim}</h3>
+                        <h3 className='booking-price text-success'>{renderPrice().toLocaleString()} VND</h3>
                         <hr />
-                        <div className='d-flex justify-content-between my-3'>
-                            <div>
-                                <span style={{ fontWeight: 'bold' }}>Cụm rạp :</span>
-                            </div>
-                            <div className='text-success'>
-                                <p>{thongTinPhim.tenCumRap}</p>
-                            </div>
+
+                        <div className='booking-detail'>
+                            <p><span className='label'>Cụm rạp:</span> {thongTinPhim.tenCumRap}</p>
+                            <p><span className='label'>Ngày chiếu:</span> {thongTinPhim.ngayChieu}</p>
+                            <p><span className='label'>Rạp:</span> {thongTinPhim.tenRap}</p>
+                            <p className='text-success'><span className='label text-danger'>Ghế:</span> {gheData.map((ghe, index) => ghe.tenGhe).join(', ')}</p>
                         </div>
                         <hr />
-                        <div className='d-flex justify-content-between my-3'>
-                            <div>
-                                <span style={{ fontWeight: 'bold' }}>Ngày chiếu:</span>
-                            </div>
-                            <div className='text-success'>
-                                <p>{thongTinPhim.ngayChieu}</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className='d-flex justify-content-between my-3'>
-                            <div>
-                                <span style={{ fontWeight: 'bold' }}>RẠP:</span>
-                            </div>
-                            <div className='text-success'>
-                                <p>{thongTinPhim.tenRap}</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className='d-flex justify-content-between my-3'>
-                            <div>
-                                <span className='text-danger' style={{ fontWeight: 'bold' }}>Ghế</span>
-                            </div>
-                            <div className='text-right'>
-                                <span className='text-success row'>{gheData.map((ghe,index)=>{
-                                    return (
-                                        <p>{ghe.tenGhe},</p>
-                                    )
-                                })}</span>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className='text-center d-flex flex-column align-items-end'>
-                            <button className='btn btn-danger w-100'>ĐẶT VÉ</button>
+                        <div className='text-center'>
+                            <button className='btn btn-danger btn-book-ticket'>ĐẶT VÉ</button>
                         </div>
                     </div>
                 </div>
-            )
+            );
         }
-    }
+    };
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div>Loading...</div>;
     return (
-        <>
-            <br />
-            <br />
-            <br />
-            <br />
+        <div className="py-5 container">
             {renderThongTinPhim()}
-        </>
-    )
-};
+        </div>
+    );
+}
 
 export default Checkout;
-

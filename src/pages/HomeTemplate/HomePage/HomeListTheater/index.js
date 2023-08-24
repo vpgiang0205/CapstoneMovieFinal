@@ -54,7 +54,7 @@ export default function HomeListTheater(props) {
                 {cumRap.danhSachPhim?.map((phim, index) => {
                   return <Fragment key={index}>
                     <div className='row'>
-                      <img width="100" className='col-3' height="130" src={phim.hinhAnh} alt={phim.tenPhim} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75/75" }} />
+                      <img width="100" className='col-2' height="100" src={phim.hinhAnh} alt={phim.tenPhim} onError={(e) => { e.target.onerror = null; e.target.src = "https://picsum.photos/75/75" }} />
 
                       <div className="col-9">
                         <NavLink to={`/detail-page/${phim.maPhim}`}> <h4 className="" >{phim.tenPhim}</h4></NavLink>
@@ -62,9 +62,9 @@ export default function HomeListTheater(props) {
 
                         <div className="d-flex flex-wrap">
                           {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
-                            return <div className='col-md-4'>
-                              <NavLink className="w-100 m-1 btn btn-outline-danger font-weight-light p-0" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
-                                {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy ~ hh:mm A')}
+                            return <div className='col-md-4' key={index}>
+                              <NavLink className=" m-1 btn btn-outline-primary font-weight-light p-1" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                                {moment(lichChieu.ngayChieuGioChieu).format('dd/mm/yyy hh:mm A')}
                               </NavLink>
                             </div>
                           })}
