@@ -4,7 +4,7 @@ import { UserOutlined, MenuOutlined } from '@ant-design/icons';
 import './style.css';
 
 export default function Navbar() {
-  const user = JSON.parse(localStorage.getItem("USER_LOGIN")); 
+  const user = JSON.parse(localStorage.getItem("USER_LOGIN"));
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to log out?")) {
@@ -14,23 +14,23 @@ export default function Navbar() {
 
   return (
     <div className="navbar__Container position-fixed w-100 bg-danger">
-    <nav className="navbar m-auto navbar-expand-md w-100 px-5">
-      <div className="w-100 d-flex justify-content-between align-items-center">
-        <NavLink className="navbar-brand" to="/" style={{ color: '#fff' }}>
-          MY CINEMA
-        </NavLink>
+      <nav className="navbar m-auto navbar-expand-md w-100 px-5">
+        <div className="w-100 d-flex justify-content-between align-items-center">
+          <NavLink className="navbar-brand" to="/" style={{ color: '#fff' }}>
+            CAPSTONE MOVIE
+          </NavLink>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ml-auto align-items-center">
-          <li className="nav-item mr-3">
-            {/* Use the UserOutlined icon with white color */}
-            <UserOutlined style={{ fontSize: '18px', color: '#fff' }} />
-          </li>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ml-auto align-items-center">
+              <li className="nav-item mb-2">
+                <UserOutlined style={{ fontSize: '18px', color: '#fff' }} />
+              </li>
               {user ? (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item ">
                     <NavLink
                       className="nav-link"
+
                     >
                       Hi, {user.hoTen ? user.hoTen : user.taiKhoan}
                     </NavLink>
@@ -70,17 +70,16 @@ export default function Navbar() {
           </div>
 
           <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          {/* Use the MenuOutlined icon with red color */}
-          <MenuOutlined style={{ fontSize: '24px', color: 'white' }} />
-        </button>
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <MenuOutlined style={{ fontSize: '24px', color: 'white' }} />
+          </button>
 
         </div>
       </nav>

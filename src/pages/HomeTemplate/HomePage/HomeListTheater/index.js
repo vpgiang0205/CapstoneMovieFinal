@@ -86,8 +86,8 @@ export default function HomeListTheater(props) {
   };
 
   return (
-    <div className='my-3'>
-      <div className='py-3 text-danger'>
+    <div className='my-5'>
+      <div className='my-3 text-danger'>
         <h2>DANH SÁCH CÁC RẠP</h2>
       </div>
       <div className='container'>

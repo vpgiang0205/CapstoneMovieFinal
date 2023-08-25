@@ -71,30 +71,29 @@ export default function HomePage() {
   };
 
   return (
-    <div className={`py-5 ${scrollPosition > 250 ? 'dark-bg' : ''} `}>
+    <div className='py-3'>
       {carouselData && (
         <Carousel
           responsive={bannerResponsive}
           autoPlay={true}
           autoPlaySpeed={5000}
           infinite={true}
-          className={`fixed`}
+          className={`custom-fixed ${scrollPosition > 50 ? 'hide-content ' : ''}`}
         >
           {renderHomeCarousel()}
-
         </Carousel>
       )}
 
-
-      <main className='main'>
+      <main className={`main ${scrollPosition > 50 ? ' dark-bg' : ''} `}>
         <section id='section__ListMovie' className='container-fluid'>
           {movieData && (renderHomeListMovie())}
 
         </section>
-        <section id='section__ListTheater' className='my-5'>
+        <section id='section__ListTheater'>
           {theaterData && (renderHomeListTheater())}
         </section>
       </main>
+
     </div>
   )
 }
